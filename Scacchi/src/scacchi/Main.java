@@ -17,7 +17,7 @@ public class Main {
 			System.out.println(pp.x + " " + pp.y);
 		}
 
-	//	wei deeps, deve andare!!!
+	//	prova prova prova prova prova
 		/*
 		 * TEST TENTATIVO DI DISEGNARE UNA SCACCHIERA
 		 */
