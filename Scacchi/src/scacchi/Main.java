@@ -15,7 +15,7 @@ public class Main {
 			System.out.println(pp.x + " " + pp.y);
 		}
 
-	//	prova prova ciao bau da fior
+	//	prova prova ciao bau da deste
 		/*
 		 * TEST TENTATIVO DI DISEGNARE UNA SCACCHIERA
 		 */
