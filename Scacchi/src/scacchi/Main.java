@@ -1,7 +1,5 @@
 package scacchi;
 
-import Grafica.*;
-
 import java.awt.Image;
 import java.util.ArrayList;
 
@@ -24,7 +22,7 @@ public class Main {
 
 		Image img = new ImageIcon("C:\\Users\\Deste\\git\\Scacchi\\src\\images\\scacchiera.png").getImage();
 		JFrame frame = new JFrame();
-		frame.getContentPane().add(new FrameScacchiera(img));
+		//frame.getContentPane().add(new FrameScacchiera(img));
 		frame.setSize(img.getWidth(null)+50, img.getHeight(null)+50);
 		frame.setVisible(true);
 	}
