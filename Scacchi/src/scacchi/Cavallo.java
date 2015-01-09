@@ -4,13 +4,18 @@ import java.util.ArrayList;
 
 public class Cavallo extends Pedina {
 
+	public Cavallo(Nome nome, Colore colore) {
+		super(nome, colore);
+	}
+
 	/*
 	 * ritorna le posizioni posiibili del cavallo per la prossima mossa
 	 * controlla le dimensioni della scacchiera ma non controlla le eventuali
 	 * altre pedine
 	 */
 	@Override
-	public ArrayList<Position> possibleMoves(Position position) {
+	public ArrayList<Position> possibleMoves(int riga, int colonna) {
+		Position position=new Position(riga, colonna);
 		ArrayList<Position> positions = new ArrayList<Position>();
 
 		positions.add(new Position(position.x - 1, position.y - 2));
