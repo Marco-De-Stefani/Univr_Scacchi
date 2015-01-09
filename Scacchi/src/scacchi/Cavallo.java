@@ -34,7 +34,7 @@ public class Cavallo extends Pedina {
 			b=false;
 			for (int i=0;i<positions.size();i++) {
 				Position pos=positions.get(i);
-				if (pos.x <= 0 || pos.y <= 0 || pos.x > 8 || pos.y > 8) {
+				if (pos.x <= 0 || pos.y <= 0 || pos.x > nRows || pos.y > nColumns) {
 					b=true;
 					positions.remove(pos);
 				}
