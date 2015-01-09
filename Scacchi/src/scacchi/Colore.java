@@ -3,6 +3,6 @@ package scacchi;
 
 public enum Colore {
 
-	ROSSO,
+	BIANCO,
 	NERO;
 }
