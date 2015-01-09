@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Pedone extends Pedina {
 
-	public Pedone(Nome nome, Colore colore) {
-		super(nome, colore);
+	public Pedone(Colore colore) {
+		super(Nome.PEDONE, colore);
 	}
 
 	@Override
