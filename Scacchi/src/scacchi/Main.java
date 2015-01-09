@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 public class Main {
 
 	public static void main(String[] args) {
-		Cavallo c = new Cavallo(Nome.CAVALLO, Colore.NERO);
+		Cavallo c = new Cavallo(Colore.NERO);
 		ArrayList<Position> p = c.possibleMoves(1,1);
 		for (Position pp : p) {
 			System.out.println(pp.x + " " + pp.y);
