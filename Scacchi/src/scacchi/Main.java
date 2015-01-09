@@ -15,7 +15,7 @@ public class Main {
 			System.out.println(pp.x + " " + pp.y);
 		}
 
-	//	prova prova prova prova prova
+	//	prova prova ciao
 		/*
 		 * TEST TENTATIVO DI DISEGNARE UNA SCACCHIERA
 		 */
