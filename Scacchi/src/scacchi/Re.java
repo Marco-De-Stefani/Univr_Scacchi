@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Re extends Pedina{
 
-	public Re(Nome nome, Colore colore) {
-		super(nome, colore);
+	public Re(Colore colore) {
+		super(Nome.RE, colore);
 		
 	}
 
