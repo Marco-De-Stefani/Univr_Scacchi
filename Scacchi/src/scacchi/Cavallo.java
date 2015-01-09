@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Cavallo extends Pedina {
 
-	public Cavallo(Nome nome, Colore colore) {
-		super(nome, colore);
+	public Cavallo(Colore colore) {
+		super(Nome.CAVALLO, colore);
 	}
 
 	/*
