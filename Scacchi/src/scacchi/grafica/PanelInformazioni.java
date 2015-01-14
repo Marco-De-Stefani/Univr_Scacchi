@@ -17,11 +17,11 @@ import scacchi.Pedina;
 import scacchi.Position;
 import scacchi.Scacchiera;
 
-public class FrameInformazioni extends JPanel{
+public class PanelInformazioni extends JPanel{
 	Scacchiera scacchiera;
 	private static final long serialVersionUID = 1L;
 	
-	public FrameInformazioni(Scacchiera scacchiera) {
+	public PanelInformazioni(Scacchiera scacchiera) {
 		this.scacchiera = scacchiera;
 		setLayout(null);
 		//mi serve il mouse listener? per ora no, am lo lascio

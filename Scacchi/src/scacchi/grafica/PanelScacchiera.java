@@ -18,7 +18,7 @@ import scacchi.Pedina;
 import scacchi.Position;
 import scacchi.Scacchiera;
 
-public class FrameScacchiera extends JPanel {
+public class PanelScacchiera extends JPanel {
 	private Image re_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Re.png").getImage();
 	private Image regina_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\regina.png").getImage();
 	private Image alfiere_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Alfiere.png").getImage();
@@ -38,7 +38,7 @@ public class FrameScacchiera extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public FrameScacchiera(Image img, Scacchiera scacchiera) {
+	public PanelScacchiera(Image img, Scacchiera scacchiera) {
 		this.scacchiera = scacchiera;
 		this.img = img;
 		Dimension size = new Dimension(img.getHeight(null), img.getHeight(null));
@@ -104,7 +104,7 @@ public class FrameScacchiera extends JPanel {
 				int x1 = j * 50;
 				int y1 = i * 50;
 
-				if (p != null && p.getColore().equals(Colore.BIANCO)) {
+				if (p != null) {//&& p.getColore().equals(Colore.BIANCO)
 					switch (p.getNome()) {
 					case RE:
 						g.drawImage(re_bianco, x1, y1, null);
