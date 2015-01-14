@@ -29,8 +29,8 @@ public class PanelScacchiera extends JPanel {
 	// TODO MODIFICA xk nn ho l'immagine verde (e ricorda di schiarirle)
 	private Image evid_verde = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\evidenziato_red.png").getImage();
 
-	private Image img;
-
+	private Image img= new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\scacchiera.png").getImage();;
+	//private Image img= new ImageIcon("..\\immagini\\scacchiera.png").getImage();;
 	// caselle evidenziate, x e y del click, scacchiera (passata dal frame)
 	int evid[][] = new int[8][8];
 	int x, y;
@@ -38,9 +38,8 @@ public class PanelScacchiera extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public PanelScacchiera(Image img, Scacchiera scacchiera) {
+	public PanelScacchiera(Scacchiera scacchiera) {
 		this.scacchiera = scacchiera;
-		this.img = img;
 		Dimension size = new Dimension(img.getHeight(null), img.getHeight(null));
 		setPreferredSize(size);
 		setMinimumSize(size);
@@ -100,7 +99,7 @@ public class PanelScacchiera extends JPanel {
 
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				Pedina p = scacchiera.getPedina(i, j);
+				Pedina p = scacchiera.getPedina(new Position(i, j));
 				int x1 = j * 50;
 				int y1 = i * 50;
 

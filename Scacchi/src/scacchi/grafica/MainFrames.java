@@ -15,11 +15,8 @@ public class MainFrames {
 		 * TEST TENTATIVO DI DISEGNARE UNA SCACCHIERA
 		 */
 		Scacchiera scacchiera=new Scacchiera();
-		Image img = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\scacchiera.png").getImage();
-		JFrame frame = new JFrame();
-		frame.getContentPane().add(new PanelScacchiera(img, scacchiera));
-		frame.setSize(img.getWidth(null)+50, img.getHeight(null)+50);
-		frame.setVisible(true);
+		FrameBase b=new FrameBase(scacchiera);
+		b.setVisible(true);
 	}
 
 }

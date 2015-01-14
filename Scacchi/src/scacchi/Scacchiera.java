@@ -39,8 +39,8 @@ public class Scacchiera {
 	 * @param j la colonna della scacchiera
 	 * @return la pedina in posizione (i,j)
 	 */
-	public Pedina getPedina(int i, int j){
-		return scacchiera[i][j];
+	public Pedina getPedina(Position p){
+		return scacchiera[p.x][p.y];
 	}
 	
 	/**
@@ -48,15 +48,25 @@ public class Scacchiera {
 	 * @param p la posizione della pedina
 	 * @return un array di interi dove sono indicate le 
 	 */
-	public int[][] getMoves(Position p){
-		int[][] moves = new int[8][8];
-		
-		
-		
-		
+	public int[] getMoves(Position p){
+		int[] moves = null;
+		//map
 		return moves;
 	}
 	
+	public boolean move(Position partenza,Position arrivo){
+		//se mangi ritorni true
+		return false;
+	}
+	
+	public int controlloVittoria(){
+		//ritorna -1 se è stata vinta da g1 0 pareggio, 1 vittoria del g2 
+		return 0;
+	}
+	
+	public void evoluzionePedone(){
+		  
+	}
 	
 	
 }

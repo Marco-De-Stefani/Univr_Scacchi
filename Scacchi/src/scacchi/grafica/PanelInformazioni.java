@@ -19,11 +19,13 @@ import scacchi.Scacchiera;
 
 public class PanelInformazioni extends JPanel{
 	Scacchiera scacchiera;
+	String nome1,nome2;
 	private static final long serialVersionUID = 1L;
 	
-	public PanelInformazioni(Scacchiera scacchiera) {
+	public PanelInformazioni(Scacchiera scacchiera, String n1,String n2) {
+		this.nome1=n1;
+		this.nome2=n2;
 		this.scacchiera = scacchiera;
-		setLayout(null);
 		//mi serve il mouse listener? per ora no, am lo lascio
 		addMouseListener(new MouseAdapter() {
 			@Override
