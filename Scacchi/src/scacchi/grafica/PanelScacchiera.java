@@ -43,10 +43,13 @@ public class PanelScacchiera extends JComponent {
 	private Image img= new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\scacchiera.png").getImage();;
 	//private Image img= new ImageIcon("..\\immagini\\scacchiera.png").getImage();;
 	// caselle evidenziate, x e y del click, scacchiera (passata dal frame)
+	
 	int evid[][] = new int[8][8];
+	boolean evidenziate=false;
 	int x, y;
 	Scacchiera scacchiera;
-
+	Position oldPos;
+	
 	private static final long serialVersionUID = 1L;
 
 	public PanelScacchiera(Scacchiera scacchiera) {
@@ -69,11 +72,21 @@ public class PanelScacchiera extends JComponent {
 				y /= 50;
 				x = x % 50;
 				y = y % 50;
-				// val da passare al miglio (0<x<8 0<y<8)
-				System.out.println("x=" + x + " y=" + y);
-				Position attuale = new Position(x, y);
-				// TODO: call metodo migliuz
-				repaint();
+				if (!evidenziate) {
+					// val da passare al miglio (0<x<8 0<y<8)
+					System.out.println("x=" + x + " y=" + y);
+					oldPos=new Position(x, y);
+					evid = scacchiera.getMoves(oldPos);
+					evidenziate = true;
+					repaint();
+				} else {
+					if(evid[x][y]!=0){
+						scacchiera.move(oldPos, new Position(x, y));
+					}else{
+						System.err.println("ERRORACCIO; tentativo invalido di mossa");
+					}
+					evidenziate=false;
+				}
 			}
 		});
 
@@ -81,22 +94,23 @@ public class PanelScacchiera extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(img, 0, 0, null);
-		evid[3][3] = 2;
-		evid[2][3] = 2;
-		evid[4][3] = 2;
-
-		// evidenzio le caselle
-		for (int i = 0; i < evid.length; i++) {
-			for (int j = 0; j < evid[0].length; j++) {
-				switch (evid[i][j]) {
-				case 1:// colora di verde
-					g.drawImage(evid_verde, j * 50, i * 50, null);
-					break;
-				case 2:// colora di rosso
-					g.drawImage(evid_rosso, j * 50, i * 50, null);
-					break;
-				default:
-					// nothing
+		
+		//metodo miglio riceve le mosse possibili
+		
+		if (evidenziate) {
+			// evidenzio le caselle
+			for (int i = 0; i < evid.length; i++) {
+				for (int j = 0; j < evid[0].length; j++) {
+					switch (evid[i][j]) {
+					case 1:// colora di verde
+						g.drawImage(evid_verde, j * 50, i * 50, null);
+						break;
+					case 2:// colora di rosso
+						g.drawImage(evid_rosso, j * 50, i * 50, null);
+						break;
+					default:
+						// nothing
+					}
 				}
 			}
 		}

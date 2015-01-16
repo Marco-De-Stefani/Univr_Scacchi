@@ -8,8 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
-
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -20,16 +18,19 @@ import scacchi.*;
 
 public class PanelInformazioni extends JComponent {
 
-	private Image re_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Re.png").getImage();
-	private Image regina_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\regina.png").getImage();
-	private Image alfiere_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Alfiere.png").getImage();
-	private Image torre_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Torre.png").getImage();
-	private Image cavallo_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Cavallo.png").getImage();
-	private Image pedone_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\Pedone.png").getImage();
+	private Image re_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\re_b.png").getImage();
+	private Image regina_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\regina_b.png").getImage();
+	private Image alfiere_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\alfiere_b.png").getImage();
+	private Image torre_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\torre_b.png").getImage();
+	private Image cavallo_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\cavallo_b.png").getImage();
+	private Image pedone_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\pedone_b.png").getImage();
 	
-	
-	
-	
+	private Image re_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\re_n.png").getImage();
+	private Image regina_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\regina_n.png").getImage();
+	private Image alfiere_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\alfiere_n.png").getImage();
+	private Image torre_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\torre_n.png").getImage();
+	private Image cavallo_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\cavallo_n.png").getImage();
+	private Image pedone_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\pedone_n.png").getImage();
 
 	Scacchiera scacchiera;
 	String nome1, nome2;
@@ -46,7 +47,7 @@ public class PanelInformazioni extends JComponent {
 		setLayout(null);
 		
 		mangiate[0]=new Re(Colore.BIANCO);
-		mangiate[1]=new Regina(Colore.BIANCO);
+		mangiate[1]=new Regina(Colore.NERO);
 		mangiate[2]=new Pedone(Colore.BIANCO);
 		
 		
@@ -89,14 +90,13 @@ public class PanelInformazioni extends JComponent {
 	}
 
 	private void stampaPedineMangiate(Graphics2D g2) {
-		int n = 0;	
+		int n = 0,b=0;	
 		
 		for (Pedina p : mangiate) {
 			if (p!=null && p.getColore().equals(Colore.BIANCO)) {
 				switch (p.getNome()) {
 				case RE:
 					g2.drawImage(re_bianco,10+(n*30), 150, 30, 30, null);
-					//g2.drawRect(10+(n*30), 150, 30, 30);
 					break;
 				case REGINA:
 					g2.drawImage(pedone_bianco,10+(n*30), 150, 30, 30, null);
@@ -112,6 +112,29 @@ public class PanelInformazioni extends JComponent {
 					break;
 				case PEDONE:
 					g2.drawImage(cavallo_bianco, 10+(n*30), 150, 30, 30, null);
+					break;
+				}
+				b++;
+			}
+			if (p!=null && p.getColore().equals(Colore.NERO)) {
+				switch (p.getNome()) {
+				case RE:
+					g2.drawImage(re_nero,10+(n*30), 150, 30, 30, null);
+					break;
+				case REGINA:
+					g2.drawImage(pedone_nero,10+(n*30), 150+70, 30, 30, null);
+					break;
+				case ALFIERE:
+					g2.drawImage(regina_nero, 10+(n*30), 150+70, 30, 30, null);
+					break;
+				case TORRE:
+					g2.drawImage(alfiere_nero, 10+(n*30), 150+70, 30, 30, null);
+					break;
+				case CAVALLO:
+					g2.drawImage(torre_nero, 10+(n*30), 150+70, 30, 30, null);
+					break;
+				case PEDONE:
+					g2.drawImage(cavallo_nero, 10+(n*30), 150+70, 30, 30, null);
 					break;
 				}
 				n++;
