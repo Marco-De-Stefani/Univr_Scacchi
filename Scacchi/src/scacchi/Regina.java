@@ -85,7 +85,7 @@ public class Regina extends Pedina {
 				break;
 			}
 		}
-		for(k = posPedina.getColonna() - 1; k > 0; k--){
+		for(k = posPedina.getColonna() - 1; k >= 0; k--){
 			if(scacchiera[posPedina.getRiga()][k] == null)
 				mosse[posPedina.getRiga()][k] = 1;
 			else{
@@ -110,7 +110,7 @@ public class Regina extends Pedina {
 				break;
 			}
 		}
-		for(k = posPedina.getRiga() - 1; k > 0; k--){
+		for(k = posPedina.getRiga() - 1; k >= 0; k--){
 			if(scacchiera[k][posPedina.getColonna()] == null)
 				mosse[k][posPedina.getColonna()] = 1;
 			else{
@@ -129,7 +129,7 @@ public class Regina extends Pedina {
 		//	k--;
 		//	l++;
 		//}
-		while(k > 0 || l < nColonne){
+		while(k >= 0 || l < nColonne){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k--;
@@ -150,7 +150,7 @@ public class Regina extends Pedina {
 		//	k--;
 		//	l--;
 		//}
-		while(k > 0 || l > 0){
+		while(k >= 0 || l >= 0){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k--;
@@ -191,7 +191,7 @@ public class Regina extends Pedina {
 		//	k++;
 		//	l--;
 		//}
-		while(k < nRighe || l > 0){
+		while(k < nRighe || l >= 0){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k++;
