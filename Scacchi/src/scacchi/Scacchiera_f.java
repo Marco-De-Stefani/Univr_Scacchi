@@ -7,7 +7,7 @@ public class Scacchiera_f {
 	public Scacchiera_f(){
 		//inizializzazione della scacchiera 8x8
 		scacchiera = new Pedina[8][8];
-		
+		//,j
 		//carico la squadra nera
 		scacchiera[2][0] = new Torre(Colore.NERO);
 		scacchiera[2][1] = new Cavallo(Colore.NERO);
