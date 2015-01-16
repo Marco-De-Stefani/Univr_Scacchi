@@ -5,15 +5,19 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import scacchi.*;
+import scacchi.Colore;
+import scacchi.Pedina;
+import scacchi.Pedone;
+import scacchi.Re;
+import scacchi.Regina;
+import scacchi.Scacchiera;
 
 
 public class PanelInformazioni extends JComponent {
@@ -73,7 +77,7 @@ public class PanelInformazioni extends JComponent {
 
 	}
 
-	// per stampare le pedine mangiate
+	// per stampare le pedine mangiate e l'interfaccia utente
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(Color.RED);
@@ -83,8 +87,6 @@ public class PanelInformazioni extends JComponent {
 		g2.drawRect(10, 150, 380, 60);
 		g2.setColor(Color.GREEN);
 		g2.drawRect(10, 150 + 70, 380, 60);
-		
-		
 		
 		
 	}

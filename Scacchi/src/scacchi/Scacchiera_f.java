@@ -9,11 +9,11 @@ public class Scacchiera_f {
 		scacchiera = new Pedina[8][8];
 		
 		//carico la squadra nera
-		scacchiera[0][0] = new Torre(Colore.NERO);
-		scacchiera[0][1] = new Cavallo(Colore.NERO);
-		scacchiera[0][2] = new Alfiere(Colore.NERO);
-		scacchiera[0][3] = new Regina(Colore.NERO);
-		scacchiera[0][4] = new Re(Colore.NERO);
+		scacchiera[2][0] = new Torre(Colore.NERO);
+		scacchiera[2][1] = new Cavallo(Colore.NERO);
+		scacchiera[2][2] = new Alfiere(Colore.NERO);
+		scacchiera[2][3] = new Regina(Colore.NERO);
+		scacchiera[2][4] = new Re(Colore.NERO);
 		scacchiera[0][5] = new Alfiere(Colore.NERO);
 		scacchiera[0][6] = new Cavallo(Colore.NERO);
 		scacchiera[0][7] = new Torre(Colore.NERO);
@@ -24,7 +24,7 @@ public class Scacchiera_f {
 		scacchiera[7][0] = new Torre(Colore.BIANCO);
 		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
-		scacchiera[7][3] = new Regina(Colore.BIANCO);
+		scacchiera[5][3] = new Regina(Colore.BIANCO);
 		scacchiera[7][4] = new Re(Colore.BIANCO);
 		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
 		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
