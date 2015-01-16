@@ -1,5 +1,7 @@
 package scacchi;
 
+import java.util.ArrayList;
+
 public class Scacchiera {
 
 	private Pedina[][] scacchiera;
@@ -45,12 +47,19 @@ public class Scacchiera {
 	
 	/**
 	 * 
-	 * @param p la posizione della pedina
-	 * @return un array di interi dove sono indicate le 
+	 * @param p la posizione della pedina da muovere
+	 * @return una matrice di interi dove sono indicate le posizioni possibili;
+	 * 		per ogni poszione viene associato un valore:
+	 * 			0 = la pedina NON può essere spostata qui
+	 * 			1 = la pedina può essere spostata qui
+	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
-	public int[] getMoves(Position p){
-		int[] moves = null;
-		//map
+	public int[][] getMoves(Position p){
+		int[][] moves = new int[8][8];
+		//ArrayList<Position> = this.getPedina(p).possibleMoves(riga, colonna);
+		
+		
+		
 		return moves;
 	}
 	
