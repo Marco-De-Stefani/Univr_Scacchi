@@ -1,20 +1,12 @@
 package scacchi.grafica;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import scacchi.Colore;
-import scacchi.Pedina;
-import scacchi.Position;
 import scacchi.Scacchiera;
 
 public class PanelInformazioni extends JPanel{
@@ -26,14 +18,15 @@ public class PanelInformazioni extends JPanel{
 		this.nome1=n1;
 		this.nome2=n2;
 		this.scacchiera = scacchiera;
-		//mi serve il mouse listener? per ora no, am lo lascio
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-		});
-
+		JLabel jLn1=new JLabel();
+		jLn1.setText(nome1);
+		JLabel jLn2=new JLabel();
+		jLn2.setText(nome2);
+		jLn1.setForeground(Color.BLUE);
+		setLayout(new GridLayout(1,3));
+		add(jLn1);
+		add(jLn2);
+		
 	}
 
 	//per stampare le pedine mangiate
