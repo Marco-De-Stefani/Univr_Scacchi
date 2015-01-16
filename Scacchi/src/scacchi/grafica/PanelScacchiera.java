@@ -44,11 +44,11 @@ public class PanelScacchiera extends JComponent {
 	//private Image img= new ImageIcon("..\\immagini\\scacchiera.png").getImage();;
 	// caselle evidenziate, x e y del click, scacchiera (passata dal frame)
 	
-	int evid[][] = new int[8][8];
+	int evid[][];
 	boolean evidenziate=false;
 	int x, y;
 	Scacchiera scacchiera;
-	Position oldPos;
+	Position oldPos;;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -66,14 +66,13 @@ public class PanelScacchiera extends JComponent {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				x = e.getX();
-				y = e.getY();
+				y = e.getX();
+				x = e.getY();
 				x /= 50;
 				y /= 50;
 				x = x % 50;
 				y = y % 50;
 				if (!evidenziate) {
-					// val da passare al miglio (0<x<8 0<y<8)
 					System.out.println("x=" + x + " y=" + y);
 					oldPos=new Position(x, y);
 					evid = scacchiera.getMoves(oldPos);
