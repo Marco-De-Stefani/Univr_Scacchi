@@ -52,10 +52,10 @@ public class Scacchiera {
 	 * 			1 = la pedina può essere spostata qui
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
-	public int[][] getMoves(Position p){
-		int[][] moves = new int[8][8];
+	public int[][] getMoves(Position pos){
+		int[][] moves = scacchiera[7][3].mossePossibili(pos, scacchiera);
 		//ArrayList<Position> = this.getPedina(p).possibleMoves(riga, colonna);
-		
+		//moves = scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(scacchiera, pos);
 		
 		
 		return moves;

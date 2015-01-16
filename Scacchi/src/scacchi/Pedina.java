@@ -32,5 +32,7 @@ public abstract class Pedina {
 	 */
 	public abstract ArrayList<Position> possibleMoves(Position posPedina);
 	
-	
+	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera){
+		return null;
+	};
 }
