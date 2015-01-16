@@ -1,7 +1,5 @@
 package scacchi;
 
-import java.util.ArrayList;
-
 public class Scacchiera {
 
 	private Pedina[][] scacchiera;
