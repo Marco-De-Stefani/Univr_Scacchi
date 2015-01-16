@@ -40,7 +40,7 @@ public class Scacchiera {
 	 * @return la pedina in posizione (i,j)
 	 */
 	public Pedina getPedina(Position p){
-		return scacchiera[p.x][p.y];
+		return scacchiera[p.getRiga()][p.getColonna()];
 	}
 	
 	/**

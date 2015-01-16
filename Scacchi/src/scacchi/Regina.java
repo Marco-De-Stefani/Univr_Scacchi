@@ -9,34 +9,34 @@ public class Regina extends Pedina {
 		super(Nome.REGINA, colore);
 	}
 	
-	public ArrayList<Position> possibleMoves(int riga, int colonna){
+	public ArrayList<Position> possibleMoves(Position posPedina){
 		ArrayList<Position> punti = new ArrayList<>();	//AL che conterrà tutti i punti dove la regina portà muoversi
 		int k;
 		int l;
 		
 		//la regina può muoversi per tutta la riga i
-		for(k = 0; k < nColumns; k++)
-			if(k != colonna)
-				punti.add(new Position(riga, k));
+		for(k = 0; k < nColonne; k++)
+			if(k != posPedina.getColonna())
+				punti.add(new Position(posPedina.getRiga(), k));
 		
 		//la regina può muoversi per tutta la colonna j
-		for(k = 0; k < nRows; k++)
-			if(k != riga)
-				punti.add(new Position(k, colonna));
+		for(k = 0; k < nRighe; k++)
+			if(k != posPedina.getRiga())
+				punti.add(new Position(k, posPedina.getColonna()));
 		
 		//la regina può muoversi in obliquo
 		//obliquo dx su
-		k = riga - 1;
-		l = colonna + 1;
-		while(k > 0 || l < nColumns){
+		k = posPedina.getRiga() - 1;
+		l = posPedina.getColonna() + 1;
+		while(k > 0 || l < nColonne){
 			punti.add(new Position(k, l));
 			k--;
 			l++;
 		}
 		
 		//obliquo sx su
-		k = riga - 1;
-		l = colonna - 1;
+		k = posPedina.getRiga() - 1;
+		l = posPedina.getColonna() - 1;
 		while(k > 0 || l > 0){
 			punti.add(new Position(k, l));
 			k--;
@@ -44,18 +44,18 @@ public class Regina extends Pedina {
 		}
 		
 		//obliquo dx giu
-		k = riga + 1;
-		l = colonna + 1;
-		while(k < nRows || l < nColumns){
+		k = posPedina.getRiga() + 1;
+		l = posPedina.getColonna() + 1;
+		while(k < nRighe || l < nColonne){
 			punti.add(new Position(k, l));
 			k++;
 			l++;
 		}
 		
 		//obliquo sx giu
-		k = riga + 1;
-		l = colonna - 1;
-		while(k < nRows || l > 0){
+		k = posPedina.getRiga() + 1;
+		l = posPedina.getColonna() - 1;
+		while(k < nRighe || l > 0){
 			punti.add(new Position(k, l));
 			k++;
 			l--;

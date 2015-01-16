@@ -8,8 +8,8 @@ public abstract class Pedina {
 	private final Nome nome;
 	private final Colore colore;
 	
-	protected static int nRows = 8;
-	protected static int nColumns = 8;
+	protected static int nRighe = 8;
+	protected static int nColonne = 8;
 	
 	public Pedina(Nome nome, Colore colore){
 		this.nome = nome;
@@ -30,7 +30,7 @@ public abstract class Pedina {
 	 * @param colonna | la colonna dove si trova la pedina
 	 * @return ArrayList di pinti dove la pedina può spostarsi
 	 */
-	public abstract ArrayList<Position> possibleMoves(int riga, int colonna);
+	public abstract ArrayList<Position> possibleMoves(Position posPedina);
 	
 	
 }

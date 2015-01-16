@@ -1,11 +1,21 @@
 package scacchi;
 
 public class Position {
-	int x;
-	int y;
+	
+	private int riga;
+	private int colonna;
 
-	public Position(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Position(int riga, int colonna) {
+		this.riga = riga;
+		this.colonna = colonna;
 	}
+	
+	public int getRiga(){
+		return riga;
+	}
+	
+	public int getColonna(){
+		return colonna;
+	}
+	
 }

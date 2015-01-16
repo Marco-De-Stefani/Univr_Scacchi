@@ -40,7 +40,7 @@ public class Scacchiera_f {
 	 * @return la pedina in posizione (i,j)
 	 */
 	public Pedina getPedina(Position p){
-		return scacchiera[p.x][p.y];
+		return scacchiera[p.getRiga()][p.getColonna()];
 	}
 	
 	/**
@@ -98,11 +98,11 @@ public class Scacchiera_f {
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
 				if(scacchiera[i][j].getColore() == Colore.NERO)				//controllo se la pedina che dà scacco è di colore nero
-					for(Position p : scacchiera[i][j].possibleMoves(i, j))	//scorro l'array delle possibleMoves
+					for(Position p : scacchiera[i][j].possibleMoves(new Position(i, j)))	//scorro l'array delle possibleMoves
 						if(p == ReBianco)									//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
 							return 1;
 				if(scacchiera[i][j].getColore() == Colore.BIANCO)
-					for(Position p : scacchiera[i][j].possibleMoves(i, j))
+					for(Position p : scacchiera[i][j].possibleMoves(new Position(i, j)))
 						if(p == ReNero)
 							return -1;
 			}

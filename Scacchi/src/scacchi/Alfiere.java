@@ -8,24 +8,24 @@ public class Alfiere extends Pedina {
 		super(Nome.ALFIERE, colore);
 	}
 	
-	public ArrayList<Position> possibleMoves(int riga, int colonna){
+	public ArrayList<Position> possibleMoves(Position posPedina){
 		ArrayList<Position> punti = new ArrayList<>();	//AL che conterrà tutti i punti dove l'alfiere portà muoversi
 		int k;
 		int l;
 		
 		//l'alfiere può muoversi in obliquo
 		//obliquo dx su
-		k = riga - 1;
-		l = colonna + 1;
-		while(k > 0 || l < nColumns){
+		k = posPedina.getRiga() - 1;
+		l = posPedina.getColonna() + 1;
+		while(k > 0 || l < nColonne){
 			punti.add(new Position(k, l));
 			k--;
 			l++;
 		}
 		
 		//obliquo sx su
-		k = riga - 1;
-		l = colonna - 1;
+		k = posPedina.getRiga() - 1;
+		l = posPedina.getColonna() - 1;
 		while(k > 0 || l > 0){
 			punti.add(new Position(k, l));
 			k--;
@@ -33,18 +33,18 @@ public class Alfiere extends Pedina {
 		}
 		
 		//obliquo dx giu
-		k = riga + 1;
-		l = colonna + 1;
-		while(k < nRows || l < nColumns){
+		k = posPedina.getRiga() + 1;
+		l = posPedina.getColonna() + 1;
+		while(k < nRighe || l < nColonne){
 			punti.add(new Position(k, l));
 			k++;
 			l++;
 		}
 		
 		//obliquo sx giu
-		k = riga + 1;
-		l = colonna - 1;
-		while(k < nRows || l > 0){
+		k = posPedina.getRiga() + 1;
+		l = posPedina.getColonna() - 1;
+		while(k < nRighe || l > 0){
 			punti.add(new Position(k, l));
 			k++;
 			l--;

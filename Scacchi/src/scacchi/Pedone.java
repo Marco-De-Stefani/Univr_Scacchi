@@ -9,21 +9,21 @@ public class Pedone extends Pedina {
 	}
 
 	@Override
-	public ArrayList<Position> possibleMoves(int riga, int colonna) {
+	public ArrayList<Position> possibleMoves(Position posPedina) {
 		
-		Position position = new Position(riga, colonna);
+		//Position position = new Position(riga, colonna);
 		ArrayList<Position> positions = new ArrayList<Position>();
 		if(this.getColore()==Colore.NERO){
 			
-			positions.add(new Position(position.x, position.y + 1));		//normale mossa del pedone
-			positions.add(new Position(position.x - 1, position.y + 1));	//mossa nel caso in cui debba mangiare
-			positions.add(new Position(position.x + 1, position.y + 1));	//mossa nel caso in cui debba mangiare
+			positions.add(new Position(posPedina.getRiga() + 1, posPedina.getColonna()));		//normale mossa del pedone
+			positions.add(new Position(posPedina.getRiga() + 1, posPedina.getColonna() - 1));	//mossa nel caso in cui debba mangiare
+			positions.add(new Position(posPedina.getRiga() + 1, posPedina.getColonna() + 1));	//mossa nel caso in cui debba mangiare
 		
 		}else{		//Colore.BIANCO
 		
-			positions.add(new Position(position.x, position.y - 1));		//normale mossa del pedone
-			positions.add(new Position(position.x - 1, position.y - 1));	//mossa nel caso in cui debba mangiare
-			positions.add(new Position(position.x + 1, position.y - 1));	//mossa nel caso in cui debba mangiare
+			positions.add(new Position(posPedina.getRiga() - 1, posPedina.getColonna()));		//normale mossa del pedone
+			positions.add(new Position(posPedina.getRiga() - 1, posPedina.getColonna() - 1));	//mossa nel caso in cui debba mangiare
+			positions.add(new Position(posPedina.getRiga() - 1, posPedina.getColonna() + 1));	//mossa nel caso in cui debba mangiare
 		
 		}
 		
@@ -33,7 +33,7 @@ public class Pedone extends Pedina {
 					b = false;
 					for (int i = 0; i < positions.size(); i++) {
 						Position pos=positions.get(i);
-						if (pos.x <= 0 || pos.y <= 0 || pos.x > nRows || pos.y > nColumns) {
+						if (pos.getRiga() <= 0 || pos.getColonna() <= 0 || pos.getRiga() > nRighe || pos.getColonna() > nColonne) {
 							b = true;
 							positions.remove(pos);
 						}
