@@ -62,7 +62,7 @@ public class Cavallo extends Pedina {
 		// scorro l'array e cerco x o y che siano <0 || >8
 		for (int i=0;i<positions.size();i++) {
 			Position pos=positions.get(i);
-			if (pos.getRiga() <= 0 || pos.getColonna() <= 0 || pos.getRiga() > nRighe || pos.getColonna() > nColonne) {
+			if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
 				//b=true;
 				positions.remove(pos);	//punti ok dentro il range della scacchiera
 			}
