@@ -129,7 +129,7 @@ public class Regina extends Pedina {
 		//	k--;
 		//	l++;
 		//}
-		while(k >= 0 || l < nColonne){
+		while(k >= 0 && l < nColonne){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k--;
@@ -150,7 +150,7 @@ public class Regina extends Pedina {
 		//	k--;
 		//	l--;
 		//}
-		while(k >= 0 || l >= 0){
+		while(k >= 0 && l >= 0){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k--;
@@ -171,7 +171,7 @@ public class Regina extends Pedina {
 		//	k++;
 		//	l++;
 		//}
-		while(k < nRighe || l < nColonne){
+		while(k < nRighe && l < nColonne){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k++;
@@ -191,7 +191,7 @@ public class Regina extends Pedina {
 		//	k++;
 		//	l--;
 		//}
-		while(k < nRighe || l >= 0){
+		while(k < nRighe && l >= 0){
 			if(scacchiera[k][l] == null){
 				mosse[k][l] = 1;
 				k++;
