@@ -43,7 +43,7 @@ public class Cavallo extends Pedina {
 		return positions;
 	}
 	
-	
+	//modificare positions, da AL a array di 8 el.
 	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera){
 		
 		ArrayList<Position> positions = new ArrayList<Position>();
