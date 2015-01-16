@@ -62,7 +62,7 @@ public class Re extends Pedina{
 
 			for (int i = 0; i < positions.size(); i++) {
 				Position pos=positions.get(i);
-				if (pos.getRiga() <= 0 || pos.getColonna() <= 0 || pos.getRiga() > nRighe || pos.getColonna() > nColonne) {
+				if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
 					positions.remove(pos);
 				}
 			}
