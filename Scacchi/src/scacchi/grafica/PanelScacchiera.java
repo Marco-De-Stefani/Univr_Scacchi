@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -21,26 +22,27 @@ import scacchi.Position;
 import scacchi.Scacchiera;
 
 public class PanelScacchiera extends JComponent {
+	private String basePath = new File("").getAbsolutePath();
 	
-	private Image re_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\re_b.png").getImage();
-	private Image regina_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\regina_b.png").getImage();
-	private Image alfiere_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\alfiere_b.png").getImage();
-	private Image torre_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\torre_b.png").getImage();
-	private Image cavallo_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\cavallo_b.png").getImage();
-	private Image pedone_bianco = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\pedone_b.png").getImage();
+	private Image re_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\re_b.png")).getImage();
+	private Image regina_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\regina_b.png")).getImage();
+	private Image alfiere_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_b.png")).getImage();
+	private Image torre_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\torre_b.png")).getImage();
+	private Image cavallo_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_b.png")).getImage();
+	private Image pedone_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\pedone_b.png")).getImage();
 	
-	private Image re_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\re_n.png").getImage();
-	private Image regina_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\regina_n.png").getImage();
-	private Image alfiere_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\alfiere_n.png").getImage();
-	private Image torre_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\torre_n.png").getImage();
-	private Image cavallo_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\cavallo_n.png").getImage();
-	private Image pedone_nero = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\pedone_n.png").getImage();
+	private Image re_nero = new ImageIcon(this.getClass().getResource("\\immagini\\re_n.png")).getImage();
+	private Image regina_nero = new ImageIcon(this.getClass().getResource("\\immagini\\regina_n.png")).getImage();
+	private Image alfiere_nero = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_n.png")).getImage();
+	private Image torre_nero = new ImageIcon(this.getClass().getResource("\\immagini\\torre_n.png")).getImage();
+	private Image cavallo_nero = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_n.png")).getImage();
+	private Image pedone_nero = new ImageIcon(this.getClass().getResource("\\immagini\\pedone_n.png")).getImage();
 	
-	private Image evid_rosso = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\ev_rosso.png").getImage();
+	private Image evid_rosso = new ImageIcon(this.getClass().getResource("\\immagini\\ev_rosso.png")).getImage();
 	// TODO MODIFICA xk nn ho l'immagine verde (e ricorda di schiarirle)
-	private Image evid_verde = new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\ev_verde.png").getImage();
+	private Image evid_verde = new ImageIcon(this.getClass().getResource("\\immagini\\ev_verde.png")).getImage();
 
-	private Image img= new ImageIcon("C:\\Users\\Deste\\git\\Univr_Scacchi\\Scacchi\\src\\scacchi\\grafica\\immagini\\scacchiera.png").getImage();;
+	private Image img= new ImageIcon(this.getClass().getResource("\\immagini\\scacchiera.png")).getImage();
 	//private Image img= new ImageIcon("..\\immagini\\scacchiera.png").getImage();;
 	// caselle evidenziate, x e y del click, scacchiera (passata dal frame)
 	
@@ -98,8 +100,8 @@ public class PanelScacchiera extends JComponent {
 		
 		if (evidenziate) {
 			// evidenzio le caselle
-			for (int i = 0; i < evid.length; i++) {
-				for (int j = 0; j < evid[0].length; j++) {
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
 					switch (evid[i][j]) {
 					case 1:// colora di verde
 						g.drawImage(evid_verde, j * 50, i * 50, null);

@@ -25,12 +25,13 @@ public class Scacchiera {
 		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
 		scacchiera[5][3] = new Regina(Colore.BIANCO);
-		scacchiera[7][4] = new Re(Colore.BIANCO);
-		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
-		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
-		scacchiera[7][7] = new Torre(Colore.BIANCO);
+		scacchiera[3][0] = new Re(Colore.BIANCO);
+		scacchiera[4][5] = new Alfiere(Colore.BIANCO);
+		scacchiera[5][5] = new Cavallo(Colore.BIANCO);
+		scacchiera[3][7] = new Torre(Colore.BIANCO);
 		for(int i = 0; i < 8; i++)
 			scacchiera[6][i] = new Pedone(Colore.BIANCO);
+		
 	}
 	
 	/**
@@ -53,7 +54,7 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
-		int[][] moves = scacchiera[5][3].mossePossibili(pos, scacchiera);
+		int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);
 		//ArrayList<Position> = this.getPedina(p).possibleMoves(riga, colonna);
 		//moves = scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(scacchiera, pos);
 		
