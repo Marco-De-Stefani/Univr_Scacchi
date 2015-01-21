@@ -3,6 +3,9 @@ package scacchi;
 public class Scacchiera {
 
 	private Pedina[][] scacchiera;
+	//////////////////////////////////////////////////////////////
+	// TODO implementare nel possibleMoves l'iterator vd Gioco15
+	//////////////////////////////////////////////////////////////
 	
 	public Scacchiera(){
 		//inizializzazione della scacchiera 8x8
