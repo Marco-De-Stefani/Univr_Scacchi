@@ -3,6 +3,7 @@ package scacchi;
 public class Scacchiera {
 
 	private Pedina[][] scacchiera;
+	private Pedina[] mangiate;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
 	//////////////////////////////////////////////////////////////
@@ -10,6 +11,7 @@ public class Scacchiera {
 	public Scacchiera(){
 		//inizializzazione della scacchiera 8x8
 		scacchiera = new Pedina[8][8];
+		mangiate = new Pedina[32];
 		
 		//carico la squadra nera
 		scacchiera[0][0] = new Torre(Colore.NERO);
@@ -78,6 +80,10 @@ public class Scacchiera {
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		return false;
+	}
+	
+	public Pedina[] getPedineMangiate(){
+		return null;
 	}
 	
 	public int controlloVittoria(){
