@@ -17,6 +17,7 @@ public class MainFrames {
 		Scacchiera scacchiera=new Scacchiera();
 		FrameBase b=new FrameBase(scacchiera);
 		b.setVisible(true);
+		//b.setResizable(false);
 	}
 
 }

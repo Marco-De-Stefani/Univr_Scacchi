@@ -69,14 +69,20 @@ public class Pedone extends Pedina {
 
 		}
 
-		// scorro l'array e cerco x o y che siano <0 || >8
-		for (int i = 0; i < positions.size(); i++) {
-			Position pos = positions.get(i);
-			if (pos.getRiga() <= 0 || pos.getColonna() <= 0
-					|| pos.getRiga() > nRighe || pos.getColonna() > nColonne) {
-				positions.remove(pos);
+		// scorro l'array e cerco x o y che siano <0 || >8 (fuori range)
+		boolean modif;
+		do{
+			modif = false;
+			
+			for (int i = 0; i < positions.size() && modif; i++) {
+				Position pos = positions.get(i);
+				if (pos.getRiga() <= 0 || pos.getColonna() <= 0
+						|| pos.getRiga() > nRighe || pos.getColonna() > nColonne) {
+					positions.remove(pos);
+					modif = true;
+				}
 			}
-		}
+		}while(modif);
 		
 		for(Position p : positions)
 			if(scacchiera[p.getRiga()][p.getColonna()] == null)
@@ -86,7 +92,7 @@ public class Pedone extends Pedina {
 					mosse[p.getRiga()][p.getColonna()] = 2;
 			}
 		
-		return mosse;
+		return mosse; //ok
 	}
 		
 
