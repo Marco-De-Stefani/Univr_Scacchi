@@ -60,13 +60,19 @@ public class Cavallo extends Pedina {
 		positions.add(new Position(posPedina.getRiga() + 2, posPedina.getColonna() + 1));
 
 		// scorro l'array e cerco x o y che siano <0 || >8
-		for (int i=0;i<positions.size();i++) {
-			Position pos=positions.get(i);
-			if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
-				//b=true;
-				positions.remove(pos);	//punti ok dentro il range della scacchiera
+		boolean miglio;
+		do{
+				miglio=false;
+			for (int i=0;i<positions.size();i++) {
+				Position pos=positions.get(i);
+				if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
+					miglio=true;
+					positions.remove(pos);	//punti ok dentro il range della scacchiera
+				}
 			}
-		}
+		}while(miglio);
+		
+		
 		for(Position p : positions)
 			if(scacchiera[p.getRiga()][p.getColonna()] == null)
 				mosse[p.getRiga()][p.getColonna()] = 1;
