@@ -57,16 +57,26 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
-		int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);
-		//ArrayList<Position> = this.getPedina(p).possibleMoves(riga, colonna);
-		//moves = scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(scacchiera, pos);
-		
-		
+		int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);		
 		return moves;
 	}
 	
+	//mangio=true, sennò false
+	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo){
-		//se mangi ritorni true
+		int [][] a=getMoves(partenza);
+		for(int i=0;i<a.length;i++){
+			for(int j=0;j<a[0].length;j++){
+				Position attuale=new Position(i, j);
+				if(attuale==arrivo){
+					scacchiera[i][j]=scacchiera[partenza.getRiga()][partenza.getColonna()];
+					scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
+					return true;
+				}
+			}
+		}
+		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
+		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		return false;
 	}
 	
