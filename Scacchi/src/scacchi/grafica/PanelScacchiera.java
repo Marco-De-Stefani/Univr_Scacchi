@@ -39,7 +39,6 @@ public class PanelScacchiera extends JComponent {
 	private Image pedone_nero = new ImageIcon(this.getClass().getResource("\\immagini\\pedone_n.png")).getImage();
 	
 	private Image evid_rosso = new ImageIcon(this.getClass().getResource("\\immagini\\ev_rosso.png")).getImage();
-	// TODO MODIFICA xk nn ho l'immagine verde (e ricorda di schiarirle)
 	private Image evid_verde = new ImageIcon(this.getClass().getResource("\\immagini\\ev_verde.png")).getImage();
 
 	private Image img= new ImageIcon(this.getClass().getResource("\\immagini\\scacchiera.png")).getImage();
