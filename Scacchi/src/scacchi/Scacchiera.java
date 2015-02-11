@@ -83,7 +83,7 @@ public class Scacchiera {
 	}
 	
 	public Pedina[] getPedineMangiate(){
-		return null;
+		return mangiate;
 	}
 	
 	public int controlloVittoria(){
