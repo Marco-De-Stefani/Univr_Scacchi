@@ -94,6 +94,8 @@ public class PanelInformazioni extends JComponent {
 	private void stampaPedineMangiate(Graphics2D g2) {
 		int n = 0,b=0;	
 		
+		mangiate=scacchiera.getPedineMangiate();
+		
 		for (Pedina p : mangiate) {
 			if (p!=null && p.getColore().equals(Colore.BIANCO)) {
 				switch (p.getNome()) {

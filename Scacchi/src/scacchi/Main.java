@@ -9,14 +9,6 @@ import javax.swing.JFrame;
 public class Main {
 
 	public static void main(String[] args) {
-		Cavallo c = new Cavallo(Colore.NERO);
-		ArrayList<Position> p = c.possibleMoves(new Position(1, 1));
-		for (Position pp : p) {
-			//System.out.println(pp.x + " " + pp.y);
-			System.out.println(pp.getRiga() + " " + pp.getColonna());
-		}
-
-	//	prova prova ciao bau da fior di nuovo
 		/*
 		 * TEST TENTATIVO DI DISEGNARE UNA SCACCHIERA
 		 */

@@ -24,13 +24,5 @@ public abstract class Pedina {
 		return this.colore;
 	}
 	
-	/**
-	 * 
-	 * @param riga | la riga dove si trova la pedina
-	 * @param colonna | la colonna dove si trova la pedina
-	 * @return ArrayList di pinti dove la pedina può spostarsi
-	 */
-	public abstract ArrayList<Position> possibleMoves(Position posPedina);
-	
 	public abstract int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera);
 }
