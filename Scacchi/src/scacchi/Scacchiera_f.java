@@ -94,16 +94,17 @@ public class Scacchiera_f {
 			}
 		}
 		
+		int [][] mosPos = null;
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
 				if(scacchiera[i][j].getColore() == Colore.NERO)				//controllo se la pedina che dà scacco è di colore nero
-					for(Position p : scacchiera[i][j].possibleMoves(new Position(i, j)))	//scorro l'array delle possibleMoves
-						if(p == reBianco)								//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
-							return 1;
+					mosPos = scacchiera[i][j].mossePossibili(new Position(i, j),scacchiera);
+					if(mosPos[reBianco.getRiga()][reBianco.getColonna()] == 1)								//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
+						return 1;
 				if(scacchiera[i][j].getColore() == Colore.BIANCO)
-					for(Position p : scacchiera[i][j].possibleMoves(new Position(i, j)))
-						if(p == reNero)
-							return -1;
+					mosPos = scacchiera[i][j].mossePossibili(new Position(i, j),scacchiera);
+					if( mosPos[reNero.getRiga()][reNero.getColonna()] == 1 )
+						return -1;
 			}
 		}
 				
@@ -130,14 +131,14 @@ public class Scacchiera_f {
 				else if(scacchiera[i][j].getNome() == Nome.RE && scacchiera[i][j].getColore() == Colore.NERO)
 					reNero = new Position(i, j);	// salvo la posizione del re nero
 			}
-		}
+		}/*
 		if(scacco() == 1 && scacchiera[reBianco.getRiga()][reBianco.getColonna()].possibleMoves(new Position(reBianco.getRiga(), reBianco.getColonna())).size() == 0 ){
 			return -1;		//vittoria da parte del nero
 		}else if(scacco() == -1 && scacchiera[reNero.getRiga()][reNero.getColonna()].possibleMoves(new Position(reNero.getRiga(), reNero.getColonna())).size() == 0){
 			return 1;		//vittoria da parte del bianco
 		}else if(scacchiera.length==2 || mosse == 100){
 			return 0;
-		}
+		}*/
 		return 7;	//valore di default non so che mettere
 	}
 	
