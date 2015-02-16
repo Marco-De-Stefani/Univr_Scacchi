@@ -4,6 +4,7 @@ public class Scacchiera {
 
 	private Pedina[][] scacchiera;
 	private Pedina[] mangiate;
+	private Colore turno=Colore.BIANCO;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
 	//////////////////////////////////////////////////////////////
@@ -59,14 +60,23 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
-		int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);		
-		return moves;
+		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
+			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);	
+			//c'è da controllare se la mossa si può fare senza fare scacco
+			return moves;
+		}
+		else return new int[8][8];
 	}
 	
 	//mangio=true, sennò false
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo){
 		int [][] a=getMoves(partenza);
+		
+		
+		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
+		else{turno=Colore.BIANCO;}
+		
 		for(int i=0;i<a.length;i++){
 			for(int j=0;j<a[0].length;j++){
 				Position attuale=new Position(i, j);
@@ -81,6 +91,8 @@ public class Scacchiera {
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		return false;
 	}
+	
+	public Colore getTurno(){return turno;}
 	
 	public Pedina[] getPedineMangiate(){
 		return mangiate;

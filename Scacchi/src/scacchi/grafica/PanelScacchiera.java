@@ -82,6 +82,7 @@ public class PanelScacchiera extends JComponent {
 				} else {
 					if(evid[x][y]!=0){
 						scacchiera.move(oldPos, new Position(x, y));
+						repaint();
 					}else{
 						System.err.println("ERRORACCIO; tentativo invalido di mossa");
 					}
