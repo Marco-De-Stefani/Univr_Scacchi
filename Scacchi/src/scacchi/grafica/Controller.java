@@ -35,8 +35,15 @@ public class Controller {
 						ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
 						ps.repaint();
 					}else{
-						System.err.println("ERRORACCIO; tentativo invalido di mossa");
-						ps.repaint();
+						if(scacchiera.getScacchiera()[x][y].getColore().equals(scacchiera.getTurno())){
+							System.out.println("x1=" + x + " y1=" + y);
+							evidenziate = true;
+							oldPos=new Position(x, y);
+							ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
+							ps.repaint();
+						}else{
+							System.err.println("ERRORACCIO; tentativo invalido di mossa");
+						}
 					}
 					evidenziate=false;
 				}

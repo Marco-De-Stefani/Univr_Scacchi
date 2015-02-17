@@ -41,7 +41,7 @@ public class Scacchiera {
 		
 	}
 	
-	public Scacchiera getScacchiera(){return this;}
+	public Pedina[][] getScacchiera(){return scacchiera;}
 	
 	/**
 	 * 
