@@ -2,6 +2,7 @@ package scacchi.grafica;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 
 public class PanelSceltaPedina extends JComponent{
 
+	private static final long serialVersionUID = 1L;
 	private ImageIcon regina_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\regina_b.png"));
 	private ImageIcon alfiere_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_b.png"));
 	private ImageIcon torre_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\torre_b.png"));
@@ -54,8 +56,6 @@ public class PanelSceltaPedina extends JComponent{
 		
 		add(jp1, BorderLayout.CENTER);
 		add(jp2, BorderLayout.CENTER);
-		
-		repaint();
 	}
 	
 }

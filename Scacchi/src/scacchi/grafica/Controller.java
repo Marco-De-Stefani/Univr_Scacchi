@@ -20,7 +20,7 @@ public class Controller {
 				int x = e.getY();
 				x /= 50;
 				y /= 50;
-				if (!evidenziate) {
+				if (!evidenziate && scacchiera.getScacchiera()[x][y]!=null) {
 					System.out.println("x=" + x + " y=" + y);
 					evidenziate = true;
 					oldPos=new Position(x, y);
