@@ -71,8 +71,8 @@ public class PanelScacchiera extends JComponent {
 				x = e.getY();
 				x /= 50;
 				y /= 50;
-				x = x % 50;
-				y = y % 50;
+				//x = x % 50;
+				//y = y % 50; non serve a una sega, perchè ci sono?
 				if (!evidenziate) {
 					System.out.println("x=" + x + " y=" + y);
 					oldPos=new Position(x, y);

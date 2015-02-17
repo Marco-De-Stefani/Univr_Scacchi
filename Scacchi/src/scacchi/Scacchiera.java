@@ -27,10 +27,10 @@ public class Scacchiera {
 			scacchiera[1][i] = new Pedone(Colore.NERO);
 		
 		//carico la squadra bianca
-		scacchiera[7][0] = new Torre(Colore.BIANCO);//funziona
+		scacchiera[7][0] = new Torre(Colore.BIANCO);
 		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
-		scacchiera[7][2] = new Alfiere(Colore.BIANCO);//funziona
-		scacchiera[7][3] = new Regina(Colore.BIANCO);//funziona
+		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
+		scacchiera[7][3] = new Regina(Colore.BIANCO);
 		scacchiera[3][0] = new Re(Colore.BIANCO);
 		scacchiera[4][5] = new Alfiere(Colore.BIANCO);
 		scacchiera[5][5] = new Cavallo(Colore.BIANCO);
