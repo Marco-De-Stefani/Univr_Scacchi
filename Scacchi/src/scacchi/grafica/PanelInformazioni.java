@@ -57,6 +57,7 @@ public class PanelInformazioni extends JComponent {
 		this.nome1 = n1;
 		this.nome2 = n2;
 		this.scacchiera = scacchiera;
+		
 		setLayout(null);
 		JLabel jLn1 = new JLabel();
 
@@ -75,6 +76,10 @@ public class PanelInformazioni extends JComponent {
 
 	}
 
+	
+	public void setPedineMangiate(Pedina[] mangiate){this.mangiate=mangiate;}
+	
+	
 	// per stampare le pedine mangiate e l'interfaccia utente
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -84,11 +89,13 @@ public class PanelInformazioni extends JComponent {
 		
 		g2.drawRect(10, 150, 380, 60);
 		g2.setColor(Color.GREEN);
-		g2.drawRect(10, 150 + 70, 380, 60);
-		
+		g2.drawRect(10, 150 + 70, 380, 60);	
 		
 	}
 
+	
+	
+	
 	private void stampaPedineMangiate(Graphics g2) {
 		int n = 0;
 		
@@ -99,41 +106,41 @@ public class PanelInformazioni extends JComponent {
 					g2.drawImage(re_bianco,10+(n*30), 150, 30, 30, null);
 					break;
 				case REGINA:
-					g2.drawImage(pedone_bianco,10+(n*30), 150, 30, 30, null);
+					g2.drawImage(regina_bianco,10+(n*30), 150, 30, 30, null);
 					break;
 				case ALFIERE:
-					g2.drawImage(regina_bianco, 10+(n*30), 150, 30, 30, null);
-					break;
-				case TORRE:
 					g2.drawImage(alfiere_bianco, 10+(n*30), 150, 30, 30, null);
 					break;
-				case CAVALLO:
+				case TORRE:
 					g2.drawImage(torre_bianco, 10+(n*30), 150, 30, 30, null);
 					break;
-				case PEDONE:
+				case CAVALLO:
 					g2.drawImage(cavallo_bianco, 10+(n*30), 150, 30, 30, null);
+					break;
+				case PEDONE:
+					g2.drawImage(pedone_bianco, 10+(n*30), 150, 30, 30, null);
 					break;
 				}
 			}
 			if (p!=null && p.getColore().equals(Colore.NERO)) {
 				switch (p.getNome()) {
 				case RE:
-					g2.drawImage(re_nero,10+(n*30), 150, 30, 30, null);
+					g2.drawImage(re_nero,10+(n*30), 150+70, 30, 30, null);
 					break;
 				case REGINA:
-					g2.drawImage(pedone_nero,10+(n*30), 150+70, 30, 30, null);
+					g2.drawImage(regina_nero,10+(n*30), 150+70, 30, 30, null);
 					break;
 				case ALFIERE:
-					g2.drawImage(regina_nero, 10+(n*30), 150+70, 30, 30, null);
-					break;
-				case TORRE:
 					g2.drawImage(alfiere_nero, 10+(n*30), 150+70, 30, 30, null);
 					break;
-				case CAVALLO:
+				case TORRE:
 					g2.drawImage(torre_nero, 10+(n*30), 150+70, 30, 30, null);
 					break;
-				case PEDONE:
+				case CAVALLO:
 					g2.drawImage(cavallo_nero, 10+(n*30), 150+70, 30, 30, null);
+					break;
+				case PEDONE:
+					g2.drawImage(pedone_nero, 10+(n*30), 150+70, 30, 30, null);
 					break;
 				}
 				n++;
