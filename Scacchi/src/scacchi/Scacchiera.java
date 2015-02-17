@@ -132,11 +132,11 @@ public class Scacchiera {
 			for(int j = 0; j < 8; j++){
 				if(scacchiera[i][j].getColore() == Colore.NERO)				//controllo se la pedina che dà scacco è di colore nero
 					mosPos = scacchiera[i][j].mossePossibili(new Position(i, j),scacchiera);
-					if(mosPos[reBianco.getRiga()][reBianco.getColonna()] == 1)								//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
+					if(mosPos[reBianco.getRiga()][reBianco.getColonna()] == 2)								//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
 						return 1;
 				if(scacchiera[i][j].getColore() == Colore.BIANCO)
 					mosPos = scacchiera[i][j].mossePossibili(new Position(i, j),scacchiera);
-					if( mosPos[reNero.getRiga()][reNero.getColonna()] == 1 )
+					if( mosPos[reNero.getRiga()][reNero.getColonna()] == 2)
 						return -1;
 			}
 		}
