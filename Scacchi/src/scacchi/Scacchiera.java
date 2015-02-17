@@ -72,9 +72,7 @@ public class Scacchiera {
 	//mangio=true, sennò false
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo){
-		int [][] a=getMoves(partenza);
 		boolean mangiato = false;
-		
 		
 		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
 		else{turno=Colore.BIANCO;}
@@ -82,7 +80,6 @@ public class Scacchiera {
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
 			mangiato = true;
 			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
-			System.out.println(mangiate[0].getNome());
 			countMangiate++;
 		}
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
