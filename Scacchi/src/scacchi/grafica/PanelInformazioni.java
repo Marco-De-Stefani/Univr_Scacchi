@@ -38,23 +38,21 @@ public class PanelInformazioni extends JComponent {
 	
 	Scacchiera scacchiera;
 	String nome1, nome2;
-	Pedina[] mangiate = new Pedina[32];
+	Pedina[] mangiate;
 
 	private static final long serialVersionUID = 1L;
 
 	public PanelInformazioni(Scacchiera scacchiera, String n1, String n2) {
+		
+		
+		mangiate=new Pedina[32];
+		
 		Dimension size = new Dimension(400,400);
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
 		setSize(size);
-		setLayout(null);
-		
-		mangiate[0]=new Re(Colore.BIANCO);
-		mangiate[1]=new Regina(Colore.NERO);
-		mangiate[2]=new Pedone(Colore.BIANCO);
-		
-		
+		setLayout(null);		
 		
 		this.nome1 = n1;
 		this.nome2 = n2;
@@ -82,7 +80,7 @@ public class PanelInformazioni extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(Color.RED);
 		
-		stampaPedineMangiate(g2);	
+		stampaPedineMangiate(g);	
 		
 		g2.drawRect(10, 150, 380, 60);
 		g2.setColor(Color.GREEN);
@@ -91,10 +89,8 @@ public class PanelInformazioni extends JComponent {
 		
 	}
 
-	private void stampaPedineMangiate(Graphics2D g2) {
-		int n = 0,b=0;	
-		
-		mangiate=scacchiera.getPedineMangiate();
+	private void stampaPedineMangiate(Graphics g2) {
+		int n = 0;
 		
 		for (Pedina p : mangiate) {
 			if (p!=null && p.getColore().equals(Colore.BIANCO)) {
@@ -118,7 +114,6 @@ public class PanelInformazioni extends JComponent {
 					g2.drawImage(cavallo_bianco, 10+(n*30), 150, 30, 30, null);
 					break;
 				}
-				b++;
 			}
 			if (p!=null && p.getColore().equals(Colore.NERO)) {
 				switch (p.getNome()) {

@@ -53,6 +53,8 @@ public class PanelScacchiera extends JComponent {
 	
 	private static final long serialVersionUID = 1L;
 
+	public Scacchiera getScacchieraAggiornata(){return scacchiera;}
+	
 	public PanelScacchiera(Scacchiera scacchiera) {
 		
 		this.scacchiera = scacchiera;

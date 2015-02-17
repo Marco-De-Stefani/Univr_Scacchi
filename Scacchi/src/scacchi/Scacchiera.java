@@ -41,6 +41,8 @@ public class Scacchiera {
 		
 	}
 	
+	public Scacchiera getScacchiera(){return this;}
+	
 	/**
 	 * 
 	 * @param i la riga della scacchiera
