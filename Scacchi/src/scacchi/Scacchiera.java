@@ -1,5 +1,8 @@
 package scacchi;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Scacchiera {
 
 	private Pedina[][] scacchiera;
@@ -65,11 +68,24 @@ public class Scacchiera {
 	public int[][] getMoves(Position pos){
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
 			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);	
-			//c'è da controllare se la mossa si può fare senza fare scacco
 			return moves;
 		}
 		else return new int[8][8];
 	}
+	
+	public ArrayList<Position> getMovesArrayList(Position pos){
+		ArrayList<Position> mosse=new ArrayList<Position>();
+		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
+			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);
+			for(int i=0;i<moves.length;i++)
+				for(int j=0;j<moves.length;j++){
+					if(moves[i][j]!=0)mosse.add(new Position(i, j));
+				}
+		}
+		return mosse;
+	}
+	
+	
 	
 	//mangio=true, sennò false
 	//la position arrivo è controllata
@@ -156,4 +172,21 @@ public class Scacchiera {
 	}
 	
 	
+	//metodo che restituisce true solo se, con una mossa posso fare in modo che il re non sia più sotto scacco
+	public boolean salvataggioRe(){
+		
+		for(int i=0;i<8;i++)
+			for(int j=0;j<8;j++){
+				if(scacchiera[i][j]!=null && scacchiera[i][j].getColore().equals(turno)){
+					//per ogni mia pedina, se posso salvare il re
+					ArrayList<Position> r=getMovesArrayList(new Position(i, j));
+					for(Position p:r){
+						//METODO DEL MIGLIOOOOOOOOOOOOOOO
+					}
+				}
+			}
+		
+		
+		return false;
+	}
 }
