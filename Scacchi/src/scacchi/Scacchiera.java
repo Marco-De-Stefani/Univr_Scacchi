@@ -5,6 +5,7 @@ public class Scacchiera {
 	private Pedina[][] scacchiera;
 	private Pedina[] mangiate;
 	private Colore turno=Colore.BIANCO;
+	int countMangiate;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
 	//////////////////////////////////////////////////////////////
@@ -13,7 +14,7 @@ public class Scacchiera {
 		//inizializzazione della scacchiera 8x8
 		scacchiera = new Pedina[8][8];
 		mangiate = new Pedina[32];
-		
+		countMangiate = 0;
 		//carico la squadra nera
 		scacchiera[0][0] = new Torre(Colore.NERO);
 		scacchiera[0][1] = new Cavallo(Colore.NERO);
@@ -72,25 +73,25 @@ public class Scacchiera {
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo){
 		int [][] a=getMoves(partenza);
+		boolean mangiato = false;
 		
 		
 		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
 		else{turno=Colore.BIANCO;}
 		
-		for(int i=0;i<a.length;i++){
-			for(int j=0;j<a[0].length;j++){
-				Position attuale=new Position(i, j);
-				if(attuale==arrivo){
-					scacchiera[i][j]=scacchiera[partenza.getRiga()][partenza.getColonna()];
-					scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
-					return true;
-				}
-			}
+		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
+			mangiato = true;
+			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
+			System.out.println(mangiate[0].getNome());
+			countMangiate++;
 		}
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
-		return false;
+		System.out.println(mangiato);
+		return mangiato;
+		
 	}
+
 	
 	public Colore getTurno(){return turno;}
 	
