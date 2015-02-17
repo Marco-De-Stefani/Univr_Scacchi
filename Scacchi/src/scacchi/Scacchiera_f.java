@@ -149,11 +149,13 @@ public class Scacchiera_f {
 	 * modifica il pedone trasformandolo in regina ???
 	 */
 	public void evoluzionePedone(){
+		// 0 regina, 1 alfiere, 2 cavallo, 3 torre ???
 		for(int i = 0; i < 8; i++){
-			if(scacchiera[i][7].getNome()==Nome.PEDONE)
-				scacchiera[i][7]= new Regina(scacchiera[i][7].getColore());
-			if(scacchiera[i][0].getNome()==Nome.PEDONE)
-				scacchiera[i][0]= new Regina(scacchiera[i][0].getColore());
+			if(scacchiera[i][7].getNome() == Nome.PEDONE)
+				scacchiera[i][7] = new Regina(scacchiera[i][7].getColore());
+			if(scacchiera[i][0].getNome() == Nome.PEDONE)
+				scacchiera[i][0] = new Regina(scacchiera[i][0].getColore());	
 		}
-	}	
+	}
+	
 }
