@@ -46,7 +46,7 @@ public class PanelScacchiera extends JComponent {
 	// caselle evidenziate, x e y del click, scacchiera (passata dal frame)
 	
 	int evid[][];
-	boolean evidenziate=false;
+	boolean evidenziate;
 	int x, y;
 	Scacchiera scacchiera;
 	Position oldPos;;
@@ -55,8 +55,11 @@ public class PanelScacchiera extends JComponent {
 
 	public Scacchiera getScacchieraAggiornata(){return scacchiera;}
 	
+	public void setEvidenziate(int evidenziate[][], boolean evidenz){this.evid=evidenziate;this.evidenziate=evidenz;}
+	
+	public int[][] getEvidenziate(){return this.evid;}
+	
 	public PanelScacchiera(Scacchiera scacchiera) {
-		
 		this.scacchiera = scacchiera;
 		
 		Dimension size = new Dimension(img.getHeight(null), img.getHeight(null));
@@ -66,32 +69,7 @@ public class PanelScacchiera extends JComponent {
 		setSize(size);
 		
 		setLayout(null);
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				y = e.getX();
-				x = e.getY();
-				x /= 50;
-				y /= 50;
-				//x = x % 50;
-				//y = y % 50; non serve a una sega, perchè ci sono?
-				if (!evidenziate) {
-					System.out.println("x=" + x + " y=" + y);
-					oldPos=new Position(x, y);
-					evid = scacchiera.getMoves(oldPos);
-					evidenziate = true;
-					repaint();
-				} else {
-					if(evid[x][y]!=0){
-						scacchiera.move(oldPos, new Position(x, y));
-						repaint();
-					}else{
-						System.err.println("ERRORACCIO; tentativo invalido di mossa");
-					}
-					evidenziate=false;
-				}
-			}
-		});
+		
 
 	}
 
@@ -99,6 +77,7 @@ public class PanelScacchiera extends JComponent {
 		g.drawImage(img, 0, 0, null);
 		
 		//metodo miglio riceve le mosse possibili
+		
 		
 		if (evidenziate) {
 			// evidenzio le caselle
