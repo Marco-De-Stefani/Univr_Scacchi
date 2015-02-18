@@ -95,29 +95,9 @@ public class Scacchiera {
 	}
 	
 	
-	
 	//mangio=true, sennò false
 	//la position arrivo è controllata
 	public boolean moveOld(Position partenza,Position arrivo){
-		boolean mangiato = false;
-		
-		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
-		else{turno=Colore.BIANCO;}
-		
-		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
-			mangiato = true;
-			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
-			countMangiate++;
-		}
-		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
-		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
-		System.out.println(mangiato);
-		scacco();
-		return mangiato;
-		
-	}
-	
-	public boolean move(Position partenza,Position arrivo){
 		canMove(partenza, arrivo);
 		boolean mangiato = false;
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
@@ -153,6 +133,30 @@ public class Scacchiera {
 	}
 	
 	
+	//mangio=true, sennò false
+	//la position arrivo è controllata
+	public boolean move(Position partenza,Position arrivo){
+		
+		if(!canMove(partenza, arrivo))	//se non può muovere, non fa niente
+			return false;
+		
+		boolean mangiato = false;
+		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
+			mangiato = true;
+			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
+			countMangiate++;
+		}
+		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
+		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
+		
+		//se non ho provocato lo scacco, passo il turno
+		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
+		else{turno=Colore.BIANCO;}
+		
+		return true;
+	}
+	
+	
 	//simula la mossa e verifica se provoca scacco al re del proprio colore
 	//return: se scacco -> false, altrimenti true
 	public boolean canMove(Position partenza,Position arrivo){
@@ -184,7 +188,7 @@ public class Scacchiera {
 		System.out.println("canMove: " + canMove);
 		return canMove;
 	}
-
+	
 
 	public void setPedinaPromozione(int n){
 		switch(n){
