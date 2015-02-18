@@ -19,12 +19,14 @@ public class MainFrames {
 		FrameBase b=new FrameBase(scacchiera);
 		b.setVisible(true);
 		//b.setResizable(false);
+		/*
 		JFrame f = new JFrame();
 		f.setLayout(null);//scacchiera-nome1-nome2 ?
 		f.add(new PanelSceltaPedina());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		f.pack();
+		*/
 
 	}
 

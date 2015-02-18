@@ -16,9 +16,12 @@ public class FrameBase extends JFrame{
 
 	public FrameBase(Scacchiera scacchiera){
 		PanelScacchiera ps=new PanelScacchiera(scacchiera);
+		PanelSceltaPedina psp=new PanelSceltaPedina();
 		PanelInformazioni pi= new PanelInformazioni(scacchiera, nome1, nome2);
-		Controller c=new Controller(ps, pi, scacchiera);
+		Controller c=new Controller(ps, pi,psp, scacchiera);
 		
+		
+		add(psp);
 		setLayout(new GridLayout(1,2));//scacchiera-nome1-nome2 ?
 		add(ps);
 		add(pi);

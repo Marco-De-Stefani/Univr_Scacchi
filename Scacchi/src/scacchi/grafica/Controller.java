@@ -10,9 +10,12 @@ public class Controller {
 	
 	boolean evidenziate=false;
 	Position oldPos;
-	public Controller(PanelScacchiera ps, PanelInformazioni pi, Scacchiera scacchiera){
+	
+	public Controller(PanelScacchiera ps, PanelInformazioni pi,PanelSceltaPedina psp, Scacchiera scacchiera){
 		
 		
+		
+		//listener dela scacchiera
 		ps.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -52,5 +55,7 @@ public class Controller {
 		
 		
 		//altro?
+		
+		
 	}
 }

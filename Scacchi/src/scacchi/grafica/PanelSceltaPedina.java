@@ -15,7 +15,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelSceltaPedina extends JComponent{
+public class PanelSceltaPedina extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private ImageIcon regina_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\regina_b.png"));
@@ -29,8 +29,8 @@ public class PanelSceltaPedina extends JComponent{
 	private ImageIcon cavallo_nero = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_n.png"));
 	
 	public PanelSceltaPedina() {
-		
 		JPanel jp1 = new JPanel();
+
 		JPanel jp2 = new JPanel();
 		
 		jp2.setLayout(new GridLayout(2, 2));
@@ -56,6 +56,7 @@ public class PanelSceltaPedina extends JComponent{
 		
 		add(jp1, BorderLayout.CENTER);
 		add(jp2, BorderLayout.CENTER);
+		
 	}
 	
 }
