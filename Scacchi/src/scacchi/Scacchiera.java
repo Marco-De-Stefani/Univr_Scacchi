@@ -289,11 +289,12 @@ public class Scacchiera {
 					ArrayList<Position> r=getMovesArrayList(new Position(i, j));
 					for(Position p:r){
 						//METODO DEL MIGLIOOOOOOOOOOOOOOO
+						if(canMove(new Position(i, j), p))
+							//se true, esiste una mossa che mi salva dallo scacco
+							return true;
 					}
 				}
 			}
-		
-		
 		return false;
 	}
 }
