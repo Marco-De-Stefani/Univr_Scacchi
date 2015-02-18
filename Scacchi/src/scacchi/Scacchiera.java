@@ -129,7 +129,8 @@ public class Scacchiera {
 	}
 	
 	public void evoluzionePedone(){
-		  fsp.setVisible(true);
+	//	fsp.setColore(turno);
+		fsp.setVisible(true);
 		  //controllo dei metodi di ritorno...come? TODO
 	}
 	
