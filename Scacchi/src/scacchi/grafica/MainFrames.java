@@ -1,13 +1,21 @@
 package scacchi.grafica;
 
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import scacchi.Scacchiera;
+
+class MyFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
+	public MyFrame() {
+		super("Promozione");
+		add(new PanelSceltaPedina());
+		this.setSize(250, 250);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
 
 public class MainFrames {
 
@@ -15,18 +23,11 @@ public class MainFrames {
 		/*
 		 * TEST TENTATIVO DI DISEGNARE UNA SCACCHIERA
 		 */
-		Scacchiera scacchiera=new Scacchiera();
-		FrameBase b=new FrameBase(scacchiera);
+		Scacchiera scacchiera = new Scacchiera();
+		FrameBase b = new FrameBase(scacchiera);
 		b.setVisible(true);
-		//b.setResizable(false);
-		/*
-		JFrame f = new JFrame();
-		f.setLayout(null);//scacchiera-nome1-nome2 ?
-		f.add(new PanelSceltaPedina());
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setVisible(true);
-		f.pack();
-		*/
+		// b.setResizable(false);
+		MyFrame m=new MyFrame();
 
 	}
 

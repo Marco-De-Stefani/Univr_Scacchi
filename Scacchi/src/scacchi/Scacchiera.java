@@ -3,11 +3,18 @@ package scacchi;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JFrame;
+
+import scacchi.grafica.FrameSceltaPedina;
+import scacchi.grafica.PanelSceltaPedina;
+
+
 public class Scacchiera {
 
 	private Pedina[][] scacchiera;
 	private Pedina[] mangiate;
 	private Colore turno=Colore.BIANCO;
+	private FrameSceltaPedina fsp;
 	int countMangiate;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
@@ -15,6 +22,7 @@ public class Scacchiera {
 	
 	public Scacchiera(){
 		//inizializzazione della scacchiera 8x8
+		fsp=new FrameSceltaPedina();
 		scacchiera = new Pedina[8][8];
 		mangiate = new Pedina[32];
 		countMangiate = 0;
@@ -121,7 +129,8 @@ public class Scacchiera {
 	}
 	
 	public void evoluzionePedone(){
-		  
+		  fsp.setVisible(true);
+		  //controllo dei metodi di ritorno...come? TODO
 	}
 	
 	/**
