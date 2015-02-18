@@ -21,10 +21,8 @@ public class Controller {
 	public Controller(PanelScacchiera ps, PanelInformazioni pi,
 			FrameSceltaPedina fsp, Scacchiera scacchiera) {
 
-		
 		fsp.setVisible(true);
-		
-		
+
 		// listener dela scacchiera
 		ps.addMouseListener(new MouseAdapter() {
 			@Override
@@ -71,27 +69,31 @@ public class Controller {
 		});
 
 		// altro?
-		
-		
-		//questa cosa funziona, vedere il metodo fsp.getContentPane.list() che stampa la gerarchia
-		fsp.getContentPane().list();
-		PanelSceltaPedina pspp=(PanelSceltaPedina)fsp.getContentPane().getComponents()[0];
-		Component[] components=((JPanel)pspp.getComponents()[1]).getComponents();
-		
+
+		// questa cosa funziona, vedere il metodo fsp.getContentPane.list() che
+		// stampa la gerarchia
+		PanelSceltaPedina pspp = (PanelSceltaPedina) fsp.getContentPane()
+				.getComponents()[0];
+		Component[] components = ((JPanel) pspp.getComponents()[1])
+				.getComponents();
 
 		for (Component c : components) {
+			if (c instanceof JButton) {
 				JButton b = (JButton) c;
-				b.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						//nomi bottoni: alfiere.cavallo.regina.torre
-						if(b.getName().equals("alfiere"))scacchiera.setPedinaPromozione(0);
-						if(b.getName().equals("cavallo"))scacchiera.setPedinaPromozione(1);
-						if(b.getName().equals("regina"))scacchiera.setPedinaPromozione(2);
-						if(b.getName().equals("torre"))scacchiera.setPedinaPromozione(3);
-					}
-				});
+				System.out.println(b.getName());
+
+				  b.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { 
+				  //nomi bottoni:
+				  //alfiere.cavallo.regina.torre
+					  if(b.getName().equals("alfiere"))scacchiera.setPedinaPromozione(0);
+					  if(b.getName().equals("cavallo"))scacchiera.setPedinaPromozione(1);
+					  if(b.getName().equals("regina"))scacchiera.setPedinaPromozione(2);
+					  if(b.getName().equals("torre"))scacchiera.setPedinaPromozione(3);
+					  notifyAll();
+				 } 
+				  });
+				 
 			}
 		}
-
 	}
-
+}

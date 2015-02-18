@@ -217,7 +217,13 @@ public class Scacchiera {
 	public void evoluzionePedone(){
 	//	fsp.setColore(turno);
 		fsp.setVisible(true);
-    //controllo dei metodi di ritorno...come? TODO
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	/**

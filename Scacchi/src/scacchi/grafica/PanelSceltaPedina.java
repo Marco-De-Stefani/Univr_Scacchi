@@ -38,7 +38,13 @@ public class PanelSceltaPedina extends JPanel{
 	private JPanel northPanel = new JPanel();
 	private JPanel southPanel = new JPanel();
 	
-	public PanelSceltaPedina() {	
+	public PanelSceltaPedina() {
+		
+		alfiere.setName("alfiere");
+		cavallo.setName("cavallo");
+		regina.setName("regina");
+		torre.setName("torre");
+		
 		southPanel.setLayout(new GridLayout(2, 2));
 		
 		JLabel etichetta = new JLabel();
