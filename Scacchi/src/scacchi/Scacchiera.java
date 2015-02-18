@@ -118,8 +118,6 @@ public class Scacchiera {
 	
 	public boolean move(Position partenza,Position arrivo){
 		boolean mangiato = false;
-		Pedina mangiata = null;
-		
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
 			mangiato = true;
 			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];

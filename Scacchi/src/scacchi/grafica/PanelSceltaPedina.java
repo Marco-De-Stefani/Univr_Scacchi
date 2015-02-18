@@ -40,31 +40,14 @@ public class PanelSceltaPedina extends JPanel{
 	public PanelSceltaPedina() {
 		
 		southPanel.setLayout(new GridLayout(2, 2));
-		//if(colore == Colore.BIANCO){
-		/*
-		alfiere.setIcon(alfiere_bianco);
-		cavallo.setIcon(cavallo_bianco);
-		regina.setIcon(regina_bianco);
-		torre.setIcon(torre_bianco);
-		//}
-		/*if(colore.equals(Colore.NERO)){
-			alfiere.setIcon(alfiere_nero);
-			cavallo.setIcon(cavallo_nero);
-			regina.setIcon(regina_nero);
-			torre.setIcon(torre_nero);	
-		}*/
-		/*southPanel.add(alfiere);
-		southPanel.add(cavallo);
-		southPanel.add(regina);
-		southPanel.add(torre);
-		*/JLabel etichetta = new JLabel();
+		JLabel etichetta = new JLabel();
 		etichetta.setText("Scegli una delle pedine");
 		etichetta.setFont(new Font("Thaoma", Font.BOLD, 16));
 	
 		northPanel.add(etichetta);
 		
 		add(northPanel, BorderLayout.NORTH);
-		//add(southPanel, BorderLayout.SOUTH);
+		add(southPanel, BorderLayout.SOUTH);
 		
 	}
 	
@@ -94,10 +77,7 @@ public class PanelSceltaPedina extends JPanel{
 		}
 
 		add(southPanel, BorderLayout.SOUTH);
-		revalidate();
-		repaint();
-		
-		//repaint();
+		revalidate();		
 	}
 	
 }

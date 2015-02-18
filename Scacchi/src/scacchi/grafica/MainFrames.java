@@ -27,7 +27,7 @@ public class MainFrames {
 		FrameBase b = new FrameBase(scacchiera);
 		b.setVisible(true);
 		// b.setResizable(false);
-		MyFrame m=new MyFrame();
+		//MyFrame m=new MyFrame();
 
 	}
 
