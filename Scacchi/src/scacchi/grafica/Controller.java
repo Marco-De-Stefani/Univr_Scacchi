@@ -18,11 +18,7 @@ public class Controller {
 	boolean evidenziate = false;
 	Position oldPos;
 
-	public Controller(PanelScacchiera ps, PanelInformazioni pi,
-			FrameSceltaPedina fsp, Scacchiera scacchiera) {
-		
-		fsp.setScacchiera(scacchiera);
-		fsp.setVisible(false);
+	public Controller(PanelScacchiera ps, PanelInformazioni pi, Scacchiera scacchiera) {
 
 		// listener dela scacchiera
 		ps.addMouseListener(new MouseAdapter() {
@@ -44,7 +40,7 @@ public class Controller {
 						if (scacchiera.move(oldPos, new Position(x, y)) == true) {
 							pi.setPedineMangiate(scacchiera.getPedineMangiate());
 							pi.repaint();
-						}
+						}else{ps.repaint();}
 						ps.setEvidenziate(
 								scacchiera.getMoves(new Position(x, y)),
 								evidenziate);

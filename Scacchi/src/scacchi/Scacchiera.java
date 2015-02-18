@@ -16,7 +16,6 @@ public class Scacchiera {
 	private Colore turno=Colore.BIANCO;
 	private int countMangiate;
 	private Pedina pedinaPromozione;
-	FrameSceltaPedina fsp;
 	Semaphore semaforo=new Semaphore(0);
 	Controller c;
 	//////////////////////////////////////////////////////////////
@@ -25,8 +24,8 @@ public class Scacchiera {
 	
 	
 	
-	public Scacchiera(FrameSceltaPedina fsp){
-		this.fsp=fsp;
+	public Scacchiera(){
+		
 		//inizializzazione della scacchiera 8x8
 		scacchiera = new Pedina[8][8];
 		mangiate = new Pedina[32];
@@ -79,7 +78,7 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
-
+		evoluzionePedone(new Position(0, 0));/////////////////////////////////////////////////////////////////////////////////////////////////////
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
 			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);	
 			return moves;
@@ -116,6 +115,7 @@ public class Scacchiera {
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		
+		//qundo muovo, controllo se il pedone si evolve
 		if(turno==Colore.BIANCO && scacchiera[arrivo.getRiga()][arrivo.getColonna()] instanceof Pedone && arrivo.getRiga()==0)
 			evoluzionePedone(new Position(arrivo.getRiga(),arrivo.getColonna()));
 		//se non ho provocato lo scacco, passo il turno
@@ -160,6 +160,7 @@ public class Scacchiera {
 	
 
 	public void setPedinaPromozione(int n){
+		
 		switch(n){
 		case 0:
 			pedinaPromozione = new Alfiere(turno);
@@ -174,7 +175,7 @@ public class Scacchiera {
 			pedinaPromozione = new Torre(turno);
 			break;
 		}
-		semaforo.release();
+
 	}
 	
 	public Colore getTurno(){return turno;}
@@ -186,15 +187,17 @@ public class Scacchiera {
 
 	
 	public void evoluzionePedone(Position pos){
-		try {
+	//	try {
+			FrameSceltaPedina fsp=new FrameSceltaPedina(semaforo);
 			fsp.setColore(turno);
+			fsp.setScacchiera(this);
 			fsp.setVisible(true);
-			
-			semaforo.acquire();
+			//semaforo.acquire();
 			scacchiera[pos.getRiga()][pos.getColonna()]=pedinaPromozione;
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			//fsp.dispose();
+	//	} catch (InterruptedException e) {
+	//		e.printStackTrace();
+	//	}
 
 		//fsp.setVisible(false);
 	}

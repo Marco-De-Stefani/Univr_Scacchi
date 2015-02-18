@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -42,28 +43,36 @@ public class PanelSceltaPedina extends JPanel{
 	private JPanel southPanel = new JPanel();
 	private Scacchiera scacchiera;
 	
-	public PanelSceltaPedina() {
+	public PanelSceltaPedina(Semaphore semaforo) {
 		alfiere.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e)
 		        {
+		        	System.out.println("b1");
 		         	scacchiera.setPedinaPromozione(0);
+		        	semaforo.release();
 		        }
 		});
 		cavallo.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e)
 	            {
+	            	System.out.println("b2");
+		        	semaforo.release();
 	            	scacchiera.setPedinaPromozione(1);
 	            }
 		});
 		regina.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e)
 	            {
+	            	System.out.println("b3");
+		        	semaforo.release();
 	            	scacchiera.setPedinaPromozione(2);
 	            }
 		});
 		torre.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e)
 	            {
+	            	System.out.println("b4");
+		        	semaforo.release();
 	            	scacchiera.setPedinaPromozione(3);
 	            }
 		});
@@ -89,9 +98,8 @@ public class PanelSceltaPedina extends JPanel{
 	public void setScacchiera(Scacchiera scacchiera){this.scacchiera=scacchiera;}
 	
 	public void setColore(Colore colore){
-		
+		remove(southPanel);
 		southPanel.setLayout(new GridLayout(2, 2));
-		
 		if(colore.equals(Colore.NERO)){
 			alfiere.setIcon(alfiere_nero);
 			cavallo.setIcon(cavallo_nero);
@@ -108,9 +116,9 @@ public class PanelSceltaPedina extends JPanel{
 		southPanel.add(cavallo);
 		southPanel.add(regina);
 		southPanel.add(torre);
+		
 		add(southPanel, BorderLayout.SOUTH);
 		revalidate();	
-		setVisible(true);
 	}
 	
 }
