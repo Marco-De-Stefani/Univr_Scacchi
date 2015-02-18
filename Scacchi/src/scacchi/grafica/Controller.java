@@ -7,6 +7,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import scacchi.Position;
 import scacchi.Scacchiera;
@@ -69,24 +71,27 @@ public class Controller {
 		});
 
 		// altro?
-		Component[] lc = fsp.getComponents();
-		for (Component c : lc) System.out.println(c.toString());
 		
 		
+		//questa cosa funziona, vedere il metodo fsp.getContentPane.list() che stampa la gerarchia
+		fsp.getContentPane().list();
+		PanelSceltaPedina pspp=(PanelSceltaPedina)fsp.getContentPane().getComponents()[0];
+		Component[] components=((JPanel)pspp.getComponents()[1]).getComponents();
 		
-		int i = 0;
-		for (Component c : lc) {
-			if (i > 3) {
+
+		for (Component c : components) {
 				JButton b = (JButton) c;
 				b.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						// Execute when button is pressed
-						System.out.println("You clicked the button");
+						//nomi bottoni: alfiere.cavallo.regina.torre
+						if(b.getName().equals("alfiere"))scacchiera.setPedinaPromozione(0);
+						if(b.getName().equals("cavallo"))scacchiera.setPedinaPromozione(1);
+						if(b.getName().equals("regina"))scacchiera.setPedinaPromozione(2);
+						if(b.getName().equals("torre"))scacchiera.setPedinaPromozione(3);
 					}
 				});
 			}
-			i++;
 		}
 
 	}
-}
+
