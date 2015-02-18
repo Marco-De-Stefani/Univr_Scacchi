@@ -117,6 +117,7 @@ public class Scacchiera {
 	}
 	
 	public boolean move(Position partenza,Position arrivo){
+		canMove(partenza, arrivo);
 		boolean mangiato = false;
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
 			mangiato = true;
@@ -148,6 +149,39 @@ public class Scacchiera {
 		
 		System.out.println(mangiato);
 		return mangiato;
+	}
+	
+	
+	//simula la mossa e verifica se provoca scacco al re del proprio colore
+	//return: se scacco -> false, altrimenti true
+	public boolean canMove(Position partenza,Position arrivo){
+		boolean mangiato = false;
+		boolean canMove = true;
+		
+		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
+			mangiato = true;
+			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
+			countMangiate++;
+		}
+		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
+		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
+		
+		//controllo se la mossa provoca lo scacco del re con lo stesso colore
+		if(scacco() == 1 &&
+				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.BIANCO)
+				|| scacco() == -1 &&
+				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.NERO))
+			canMove = false;
+		
+		//rollback
+		scacchiera[partenza.getRiga()][partenza.getColonna()]=scacchiera[arrivo.getRiga()][arrivo.getColonna()];
+		scacchiera[arrivo.getRiga()][arrivo.getColonna()] = null;
+		if(mangiato){
+			countMangiate--;
+			scacchiera[arrivo.getRiga()][arrivo.getColonna()] = mangiate[countMangiate];
+		}
+		System.out.println("canMove: " + canMove);
+		return canMove;
 	}
 
 
@@ -197,16 +231,14 @@ public class Scacchiera {
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
 				if(scacchiera[i][j] != null){
-					if(scacchiera[i][j].getColore() == Colore.NERO)				//controllo se la pedina che dà scacco è di colore nero
+					if(scacchiera[i][j].getColore() == Colore.NERO){				//controllo se la pedina che dà scacco è di colore nero
 						mosPos = scacchiera[i][j].mossePossibili(new Position(i, j),scacchiera);
-						if(mosPos[reBianco.getRiga()][reBianco.getColonna()] == 2){								//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
-						//System.out.println("scacco re bianco");
+						if(mosPos[reBianco.getRiga()][reBianco.getColonna()] == 2)		//se è uguale alla posizione del re bianco, allora il re sarà sotto scacco
 							return 1;
 					}
-					if(scacchiera[i][j].getColore() == Colore.BIANCO)
+					if(scacchiera[i][j].getColore() == Colore.BIANCO){
 						mosPos = scacchiera[i][j].mossePossibili(new Position(i, j),scacchiera);
-						if( mosPos[reNero.getRiga()][reNero.getColonna()] == 2){
-						//System.out.println("scacco re nero");
+						if( mosPos[reNero.getRiga()][reNero.getColonna()] == 2)
 							return -1;
 					}
 				}
