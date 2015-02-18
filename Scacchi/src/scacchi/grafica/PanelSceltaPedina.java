@@ -15,6 +15,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import scacchi.Colore;
+
 public class PanelSceltaPedina extends JPanel{
 
 	private static final long serialVersionUID = 1L;
@@ -28,35 +30,74 @@ public class PanelSceltaPedina extends JPanel{
 	private ImageIcon torre_nero = new ImageIcon(this.getClass().getResource("\\immagini\\torre_n.png"));
 	private ImageIcon cavallo_nero = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_n.png"));
 	
-	public PanelSceltaPedina() {
-		JPanel jp1 = new JPanel();
-
-		JPanel jp2 = new JPanel();
-		
-		jp2.setLayout(new GridLayout(2, 2));
-		
-		JButton alfiere = new JButton();
-		alfiere.setIcon(alfiere_bianco);
-		jp2.add(alfiere);
-		JButton cavallo = new JButton();
-		cavallo.setIcon(cavallo_bianco);
-		jp2.add(cavallo);
-		JButton regina = new JButton();
-		regina.setIcon(regina_bianco);
-		jp2.add(regina);
-		JButton torre = new JButton();
-		torre.setIcon(torre_bianco);
-		jp2.add(torre);
-		
-		JLabel jLn1 = new JLabel();
-		jLn1.setText("Scegli una delle della pedina");
-		jLn1.setFont(new Font("Thaoma", Font.PLAIN, 15));
+	private JButton alfiere = new JButton();
+	private JButton cavallo = new JButton();
+	private JButton regina = new JButton();
+	private JButton torre = new JButton();
+	private JPanel northPanel = new JPanel();
+	private JPanel southPanel = new JPanel();
 	
-		jp1.add(jLn1);
+	public PanelSceltaPedina() {
 		
-		add(jp1, BorderLayout.CENTER);
-		add(jp2, BorderLayout.CENTER);
+		southPanel.setLayout(new GridLayout(2, 2));
+		//if(colore == Colore.BIANCO){
+		/*
+		alfiere.setIcon(alfiere_bianco);
+		cavallo.setIcon(cavallo_bianco);
+		regina.setIcon(regina_bianco);
+		torre.setIcon(torre_bianco);
+		//}
+		/*if(colore.equals(Colore.NERO)){
+			alfiere.setIcon(alfiere_nero);
+			cavallo.setIcon(cavallo_nero);
+			regina.setIcon(regina_nero);
+			torre.setIcon(torre_nero);	
+		}*/
+		/*southPanel.add(alfiere);
+		southPanel.add(cavallo);
+		southPanel.add(regina);
+		southPanel.add(torre);
+		*/JLabel etichetta = new JLabel();
+		etichetta.setText("Scegli una delle pedine");
+		etichetta.setFont(new Font("Thaoma", Font.BOLD, 16));
+	
+		northPanel.add(etichetta);
 		
+		add(northPanel, BorderLayout.NORTH);
+		//add(southPanel, BorderLayout.SOUTH);
+		
+	}
+	
+	public void setColore(Colore colore){
+		southPanel.setLayout(new GridLayout(2, 2));
+		if(colore.equals(Colore.NERO)){
+			System.out.println("Entra ?");
+			alfiere.setIcon(alfiere_nero);
+			cavallo.setIcon(cavallo_nero);
+			regina.setIcon(regina_nero);
+			torre.setIcon(torre_nero);
+			southPanel.add(alfiere);
+			southPanel.add(cavallo);
+			southPanel.add(regina);
+			southPanel.add(torre);		
+		}
+		if(colore == Colore.BIANCO){
+			System.out.println("O entra di qua ?");
+			alfiere.setIcon(alfiere_bianco);
+			cavallo.setIcon(cavallo_bianco);
+			regina.setIcon(regina_bianco);
+			torre.setIcon(torre_bianco);
+			southPanel.add(alfiere);
+			southPanel.add(cavallo);
+			southPanel.add(regina);
+			southPanel.add(torre);
+		}
+
+		add(southPanel, BorderLayout.SOUTH);
+		revalidate();
+		repaint();
+		
+		//repaint();
 	}
 	
 }
