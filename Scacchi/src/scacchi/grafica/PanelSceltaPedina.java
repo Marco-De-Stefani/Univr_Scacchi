@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -16,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import scacchi.Colore;
+import scacchi.Scacchiera;
 
 public class PanelSceltaPedina extends JPanel{
 
@@ -37,8 +40,33 @@ public class PanelSceltaPedina extends JPanel{
 	private JButton torre = new JButton();
 	private JPanel northPanel = new JPanel();
 	private JPanel southPanel = new JPanel();
+	private Scacchiera scacchiera;
 	
 	public PanelSceltaPedina() {
+		alfiere.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e)
+		        {
+		         	scacchiera.setPedinaPromozione(0);
+		        }
+		});
+		cavallo.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e)
+	            {
+	            	scacchiera.setPedinaPromozione(1);
+	            }
+		});
+		regina.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e)
+	            {
+	            	scacchiera.setPedinaPromozione(2);
+	            }
+		});
+		torre.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e)
+	            {
+	            	scacchiera.setPedinaPromozione(3);
+	            }
+		});
 		
 		alfiere.setName("alfiere");
 		cavallo.setName("cavallo");
@@ -56,6 +84,9 @@ public class PanelSceltaPedina extends JPanel{
 		add(northPanel, BorderLayout.NORTH);
 		add(southPanel, BorderLayout.SOUTH);
 	}
+	
+	
+	public void setScacchiera(Scacchiera scacchiera){this.scacchiera=scacchiera;}
 	
 	public void setColore(Colore colore){
 		
@@ -78,7 +109,8 @@ public class PanelSceltaPedina extends JPanel{
 		southPanel.add(regina);
 		southPanel.add(torre);
 		add(southPanel, BorderLayout.SOUTH);
-		revalidate();		
+		revalidate();	
+		setVisible(true);
 	}
 	
 }

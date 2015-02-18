@@ -1,12 +1,12 @@
 package scacchi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.concurrent.Semaphore;
 
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import scacchi.grafica.Controller;
 import scacchi.grafica.FrameSceltaPedina;
-import scacchi.grafica.PanelSceltaPedina;
 
 
 public class Scacchiera {
@@ -14,16 +14,20 @@ public class Scacchiera {
 	private Pedina[][] scacchiera;
 	private Pedina[] mangiate;
 	private Colore turno=Colore.BIANCO;
-	private FrameSceltaPedina fsp;
 	private int countMangiate;
 	private Pedina pedinaPromozione;
+	FrameSceltaPedina fsp;
+	Semaphore semaforo=new Semaphore(0);
+	Controller c;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
 	//////////////////////////////////////////////////////////////
 	
-	public Scacchiera(){
+	
+	
+	public Scacchiera(FrameSceltaPedina fsp){
+		this.fsp=fsp;
 		//inizializzazione della scacchiera 8x8
-		fsp=new FrameSceltaPedina();
 		scacchiera = new Pedina[8][8];
 		mangiate = new Pedina[32];
 		countMangiate = 0;
@@ -44,10 +48,10 @@ public class Scacchiera {
 		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
 		scacchiera[7][3] = new Regina(Colore.BIANCO);
-		scacchiera[3][0] = new Re(Colore.BIANCO);
-		scacchiera[4][5] = new Alfiere(Colore.BIANCO);
-		scacchiera[5][5] = new Cavallo(Colore.BIANCO);
-		scacchiera[3][7] = new Torre(Colore.BIANCO);
+		scacchiera[7][4] = new Re(Colore.BIANCO);
+		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
+		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
+		scacchiera[7][7] = new Torre(Colore.BIANCO);
 		for(int i = 0; i < 8; i++)
 			scacchiera[6][i] = new Pedone(Colore.BIANCO);
 		
@@ -75,6 +79,7 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
+
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
 			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);	
 			return moves;
@@ -93,62 +98,26 @@ public class Scacchiera {
 		}
 		return mosse;
 	}
-	
-	
-	//mangio=true, sennò false
-	//la position arrivo è controllata
-	public boolean moveOld(Position partenza,Position arrivo){
-		canMove(partenza, arrivo);
-		boolean mangiato = false;
-		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
-			mangiato = true;
-			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
-			countMangiate++;
-		}
-		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
-		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		
-		//se la mossa provoca lo scacco del re con lo stesso colore, la mossa non vale (rollback)
-		if(scacco() == 1 &&
-				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.BIANCO)
-				|| scacco() == -1 &&
-				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.NERO)){
-			
-			scacchiera[partenza.getRiga()][partenza.getColonna()]=scacchiera[arrivo.getRiga()][arrivo.getColonna()];
-			scacchiera[arrivo.getRiga()][arrivo.getColonna()] = null;
-			if(mangiato){
-				countMangiate--;
-				scacchiera[arrivo.getRiga()][arrivo.getColonna()] = mangiate[countMangiate];
-			}
-			return false;
-		}
-		
-		//se non ho provocato lo scacco
-		//passo il turno
-		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
-		else{turno=Colore.BIANCO;}
-		
-		System.out.println(mangiato);
-		return mangiato;
-	}
-	
 	
 	//mangio=true, sennò false
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo){
 		
-		if(!canMove(partenza, arrivo))	//se non può muovere, non fa niente
+		if(!canMove(partenza, arrivo)){	//se non può muovere, non fa niente
+			JOptionPane.showMessageDialog(null,"Mossa non valida, metterebbe il re sotto scacco!","Mossa non valida",JOptionPane.ERROR_MESSAGE);
 			return false;
+		}
 		
-		boolean mangiato = false;
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
-			mangiato = true;
 			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 			countMangiate++;
 		}
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		
+		if(turno==Colore.BIANCO && scacchiera[arrivo.getRiga()][arrivo.getColonna()] instanceof Pedone && arrivo.getRiga()==0)
+			evoluzionePedone(new Position(arrivo.getRiga(),arrivo.getColonna()));
 		//se non ho provocato lo scacco, passo il turno
 		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
 		else{turno=Colore.BIANCO;}
@@ -205,7 +174,7 @@ public class Scacchiera {
 			pedinaPromozione = new Torre(turno);
 			break;
 		}
-		notifyAll();
+		semaforo.release();
 	}
 	
 	public Colore getTurno(){return turno;}
@@ -214,23 +183,20 @@ public class Scacchiera {
 		return mangiate;
 	}
 	
-	public int controlloVittoria(){
-		//ritorna -1 se è stata vinta da g1 0 pareggio, 1 vittoria del g2 
-		return 0;
-	}
+
 	
 	public void evoluzionePedone(Position pos){
-	//	fsp.setColore(turno);
-		fsp.setVisible(true);
 		try {
-			wait();
+			fsp.setColore(turno);
+			fsp.setVisible(true);
+			
+			semaforo.acquire();
+			scacchiera[pos.getRiga()][pos.getColonna()]=pedinaPromozione;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		//la finestra ha finito
-		fsp.setVisible(false);
-		scacchiera[pos.getRiga()][pos.getColonna()]=pedinaPromozione;
+
+		//fsp.setVisible(false);
 	}
 	
 	/**
@@ -278,7 +244,30 @@ public class Scacchiera {
 		return 0;
 	}
 	
-	
+
+	public boolean scaccoMatto(){
+		//funzione chiamata solo in caso di scacco!
+		Position re = null;
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(scacchiera[i][j] != null && scacchiera[i][j].getNome() == Nome.RE && scacchiera[i][j].getColore() == turno){
+					re=new Position(i,j);
+				}
+			}
+		}
+		
+		ArrayList<Position> mosseRe= getMovesArrayList(re);
+		for(Position p:mosseRe){
+			if(canMove(re,p))return false;
+		}
+		
+			//il re non ha mosse possibili
+			if(!salvataggioRe())
+				return true;
+			else
+				return false;
+		}
+
 	//metodo che restituisce true solo se, con una mossa posso fare in modo che il re non sia più sotto scacco
 	public boolean salvataggioRe(){
 		
