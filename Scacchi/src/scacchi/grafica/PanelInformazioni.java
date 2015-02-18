@@ -37,7 +37,7 @@ public class PanelInformazioni extends JComponent {
 	private Image pedone_nero = new ImageIcon(this.getClass().getResource("\\immagini\\pedone_n.png")).getImage();
 	
 	private int n1=0,n2=0;
-	
+	int nStampate=0;
 	Scacchiera scacchiera;
 	String nome1, nome2;
 	Pedina[] mangiate;
@@ -99,65 +99,53 @@ public class PanelInformazioni extends JComponent {
 	
 	
 	private void stampaPedineMangiate(Graphics g2) {
-		
-		for (Pedina p : mangiate) {
+		n1=0;n2=0;
+		for (Pedina p:mangiate) {
 			if (p!=null && p.getColore().equals(Colore.BIANCO)) {
 				switch (p.getNome()) {
 				case RE:
 					g2.drawImage(re_bianco,10+(n1*30), 150, 30, 30, null);
-					n1++;
 					break;
 				case REGINA:
 					g2.drawImage(regina_bianco,10+(n1*30), 150, 30, 30, null);
-					n1++;
 					break;
 				case ALFIERE:
 					g2.drawImage(alfiere_bianco, 10+(n1*30), 150, 30, 30, null);
-					n1++;
 					break;
 				case TORRE:
 					g2.drawImage(torre_bianco, 10+(n1*30), 150, 30, 30, null);
-					n1++;
 					break;
 				case CAVALLO:
 					g2.drawImage(cavallo_bianco, 10+(n1*30), 150, 30, 30, null);
-					n1++;
 					break;
 				case PEDONE:
 					g2.drawImage(pedone_bianco, 10+(n1*30), 150, 30, 30, null);
-					n1++;
 					break;
 				}
-				
+				n1++;
 			}
 			if (p!=null && p.getColore().equals(Colore.NERO)) {
 				switch (p.getNome()) {
 				case RE:
 					g2.drawImage(re_nero,10+(n2*30), 150+70, 30, 30, null);
-					n2++;
 					break;
 				case REGINA:
 					g2.drawImage(regina_nero,10+(n2*30), 150+70, 30, 30, null);
-					n2++;
 					break;
 				case ALFIERE:
 					g2.drawImage(alfiere_nero, 10+(n2*30), 150+70, 30, 30, null);
-					n2++;
 					break;
 				case TORRE:
 					g2.drawImage(torre_nero, 10+(n2*30), 150+70, 30, 30, null);
-					n2++;
 					break;
 				case CAVALLO:
 					g2.drawImage(cavallo_nero, 10+(n2*30), 150+70, 30, 30, null);
-					n2++;
 					break;
 				case PEDONE:
 					g2.drawImage(pedone_nero, 10+(n2*30), 150+70, 30, 30, null);
-					n2++;
 					break;
 				}
-				
+				n2++;
 			}
 		}//for
 	}
