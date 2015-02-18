@@ -201,6 +201,7 @@ public class Scacchiera {
 			pedinaPromozione = new Torre(turno);
 			break;
 		}
+		notifyAll();
 	}
 	
 	public Colore getTurno(){return turno;}
@@ -214,7 +215,7 @@ public class Scacchiera {
 		return 0;
 	}
 	
-	public void evoluzionePedone(){
+	public void evoluzionePedone(Position pos){
 	//	fsp.setColore(turno);
 		fsp.setVisible(true);
 		try {
@@ -223,7 +224,9 @@ public class Scacchiera {
 			e.printStackTrace();
 		}
 		
-		
+		//la finestra ha finito
+		fsp.setVisible(false);
+		scacchiera[pos.getRiga()][pos.getColonna()]=pedinaPromozione;
 	}
 	
 	/**

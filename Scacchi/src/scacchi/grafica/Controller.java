@@ -89,7 +89,6 @@ public class Controller {
 					  if(b.getName().equals("cavallo"))scacchiera.setPedinaPromozione(1);
 					  if(b.getName().equals("regina"))scacchiera.setPedinaPromozione(2);
 					  if(b.getName().equals("torre"))scacchiera.setPedinaPromozione(3);
-					  notifyAll();
 				 } 
 				  });
 				 
