@@ -15,7 +15,8 @@ public class Scacchiera {
 	private Pedina[] mangiate;
 	private Colore turno=Colore.BIANCO;
 	private FrameSceltaPedina fsp;
-	int countMangiate;
+	private int countMangiate;
+	private Pedina pedinaPromozione;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
 	//////////////////////////////////////////////////////////////
@@ -185,6 +186,22 @@ public class Scacchiera {
 	}
 
 
+	public void setPedinaPromozione(int n){
+		switch(n){
+		case 0:
+			pedinaPromozione = new Alfiere(turno);
+			break;
+		case 1:
+			pedinaPromozione = new Cavallo(turno);
+			break;
+		case 2:
+			pedinaPromozione = new Regina(turno);
+			break;
+		case 3:
+			pedinaPromozione = new Torre(turno);
+			break;
+		}
+	}
 	
 	public Colore getTurno(){return turno;}
 	
