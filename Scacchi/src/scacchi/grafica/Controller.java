@@ -1,5 +1,6 @@
 package scacchi.grafica;
 
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -55,6 +56,14 @@ public class Controller {
 		
 		
 		//altro?
+		Component[] lc= psp.getComponents();
+		
+		for(Component c:lc){
+			c.addMouseListener(l);
+		}
+		
+		
+		
 		
 		
 	}

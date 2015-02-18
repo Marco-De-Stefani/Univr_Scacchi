@@ -97,7 +97,7 @@ public class Scacchiera {
 	
 	//mangio=true, sennò false
 	//la position arrivo è controllata
-	public boolean move(Position partenza,Position arrivo){
+	public boolean moveOld(Position partenza,Position arrivo){
 		boolean mangiato = false;
 		
 		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
@@ -115,6 +115,43 @@ public class Scacchiera {
 		return mangiato;
 		
 	}
+	
+	public boolean move(Position partenza,Position arrivo){
+		boolean mangiato = false;
+		Pedina mangiata = null;
+		
+		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
+			mangiato = true;
+			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
+			countMangiate++;
+		}
+		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
+		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
+		
+		//se la mossa provoca lo scacco del re con lo stesso colore, la mossa non vale (rollback)
+		if(scacco() == 1 &&
+				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.BIANCO)
+				|| scacco() == -1 &&
+				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.NERO)){
+			
+			scacchiera[partenza.getRiga()][partenza.getColonna()]=scacchiera[arrivo.getRiga()][arrivo.getColonna()];
+			scacchiera[arrivo.getRiga()][arrivo.getColonna()] = null;
+			if(mangiato){
+				countMangiate--;
+				scacchiera[arrivo.getRiga()][arrivo.getColonna()] = mangiate[countMangiate];
+			}
+			return false;
+		}
+		
+		//se non ho provocato lo scacco
+		//passo il turno
+		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
+		else{turno=Colore.BIANCO;}
+		
+		System.out.println(mangiato);
+		return mangiato;
+	}
+
 
 	
 	public Colore getTurno(){return turno;}
@@ -131,7 +168,7 @@ public class Scacchiera {
 	public void evoluzionePedone(){
 	//	fsp.setColore(turno);
 		fsp.setVisible(true);
-		  //controllo dei metodi di ritorno...come? TODO
+    //controllo dei metodi di ritorno...come? TODO
 	}
 	
 	/**
