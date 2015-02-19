@@ -47,7 +47,6 @@ public class PanelSceltaPedina extends JPanel{
 		alfiere.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e)
 		        {
-		        	System.out.println("b1");
 		         	scacchiera.setPedinaPromozione(0);
 		        	semaforo.release();
 		        }

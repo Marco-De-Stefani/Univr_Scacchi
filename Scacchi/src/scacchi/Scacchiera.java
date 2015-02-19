@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import scacchi.grafica.Controller;
 import scacchi.grafica.FrameSceltaPedina;
+import scacchi.grafica.PanelScacchiera;
 
 
 public class Scacchiera {
@@ -59,6 +60,12 @@ public class Scacchiera {
 	
 	public Pedina[][] getScacchiera(){return scacchiera;}
 	
+	public void setScacchiera(Position pos,Pedina p){
+		scacchiera[pos.getRiga()][pos.getColonna()]=p;
+		
+	}
+	
+	
 	/**
 	 * 
 	 * @param i la riga della scacchiera
@@ -79,7 +86,6 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
-		//evoluzionePedone(new Position(0, 0));/////////////////////////////////////////////////////////////////////////////////////////////////////
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
 			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);	
 			return moves;
@@ -102,7 +108,7 @@ public class Scacchiera {
 	
 	//mangio=true, sennò false
 	//la position arrivo è controllata
-	public boolean move(Position partenza,Position arrivo){
+	public boolean move(Position partenza,Position arrivo,PanelScacchiera ps){
 		
 		if(!canMove(partenza, arrivo)){	//se non può muovere, non fa niente
 			JOptionPane.showMessageDialog(null,"Mossa non valida, metterebbe il re sotto scacco!","Mossa non valida",JOptionPane.ERROR_MESSAGE);
@@ -117,8 +123,19 @@ public class Scacchiera {
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		
 		//qundo muovo, controllo se il pedone si evolve
-		if(turno==Colore.BIANCO && scacchiera[arrivo.getRiga()][arrivo.getColonna()] instanceof Pedone && arrivo.getRiga()==0)
-			evoluzionePedone(new Position(arrivo.getRiga(),arrivo.getColonna()));
+		if(turno==Colore.BIANCO && scacchiera[arrivo.getRiga()][arrivo.getColonna()] instanceof Pedone && arrivo.getRiga()==0){
+			evoluzionePedone(new Position(arrivo.getRiga(),arrivo.getColonna()),ps);
+			ps.setEnabled(false);
+			ps.revalidate();
+			ps.repaint();
+		}
+		if(turno==Colore.NERO && scacchiera[arrivo.getRiga()][arrivo.getColonna()] instanceof Pedone && arrivo.getRiga()==7){
+			evoluzionePedone(new Position(arrivo.getRiga(),arrivo.getColonna()),ps);
+			ps.setEnabled(false);
+			ps.revalidate();
+			ps.repaint();
+		}
+		
 		//se non ho provocato lo scacco, passo il turno
 		if(turno.equals(Colore.BIANCO))turno=Colore.NERO;
 		else{turno=Colore.BIANCO;}
@@ -159,48 +176,15 @@ public class Scacchiera {
 		return canMove;
 	}
 	
-
-	public void setPedinaPromozione(int n){
-		
-		switch(n){
-		case 0:
-			pedinaPromozione = new Alfiere(turno);
-			break;
-		case 1:
-			pedinaPromozione = new Cavallo(turno);
-			break;
-		case 2:
-			pedinaPromozione = new Regina(turno);
-			break;
-		case 3:
-			pedinaPromozione = new Torre(turno);
-			break;
-		}
-
-	}
-	
 	public Colore getTurno(){return turno;}
 	
 	public Pedina[] getPedineMangiate(){
 		return mangiate;
 	}
 	
-
-	
-	public void evoluzionePedone(Position pos){
-	//	try {
-			FrameSceltaPedina fsp=new FrameSceltaPedina(semaforo);
-			fsp.setColore(turno);
-			fsp.setScacchiera(this);
+	public void evoluzionePedone(Position pos,PanelScacchiera ps){
+			FrameSceltaPedina fsp=new FrameSceltaPedina(turno,this,pos,ps);
 			fsp.setVisible(true);
-			//semaforo.acquire();
-			scacchiera[pos.getRiga()][pos.getColonna()]=pedinaPromozione;
-			//fsp.dispose();
-	//	} catch (InterruptedException e) {
-	//		e.printStackTrace();
-	//	}
-
-		//fsp.setVisible(false);
 	}
 	
 	/**

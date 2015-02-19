@@ -32,32 +32,27 @@ public class Controller {
 					System.out.println("x=" + x + " y=" + y);
 					evidenziate = true;
 					oldPos = new Position(x, y);
-					ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),
-							evidenziate);
+					ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
 					ps.repaint();
 				} else {
 					if (ps.getEvidenziate()[x][y] != 0) {
-						if (scacchiera.move(oldPos, new Position(x, y)) == true) {
+						if (scacchiera.move(oldPos, new Position(x, y),ps) == true) {
 							pi.setPedineMangiate(scacchiera.getPedineMangiate());
 							pi.repaint();
-						}else{ps.repaint();}
-						ps.setEvidenziate(
-								scacchiera.getMoves(new Position(x, y)),
-								evidenziate);
+							ps.repaint();
+						}
+						ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
 						ps.repaint();
 					} else {
-						if (scacchiera.getScacchiera()[x][y].getColore()
-								.equals(scacchiera.getTurno())) {
-							System.out.println("x1=" + x + " y1=" + y);
+						if (scacchiera.getScacchiera()[x][y].getColore().equals(scacchiera.getTurno())) {
+							//System.out.println("x1=" + x + " y1=" + y);
 							evidenziate = true;
 							oldPos = new Position(x, y);
-							ps.setEvidenziate(
-									scacchiera.getMoves(new Position(x, y)),
-									evidenziate);
+							ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
 							ps.repaint();
 						} else {
-							System.err
-									.println("ERRORACCIO; tentativo invalido di mossa");
+							System.err.println("ERRORACCIO; tentativo invalido di mossa");
+							ps.repaint();
 						}
 					}
 					evidenziate = false;
