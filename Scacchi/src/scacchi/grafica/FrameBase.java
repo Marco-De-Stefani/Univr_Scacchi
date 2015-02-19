@@ -7,10 +7,9 @@ import javax.swing.JFrame;
 import scacchi.Scacchiera;
 
 public class FrameBase extends JFrame{
-	String nome1="pippo",nome2="claudio";
 	private static final long serialVersionUID = 1L;
 
-	public FrameBase(){
+	public FrameBase(String nome1,String nome2){
 		Scacchiera scacchiera=new Scacchiera();
 		PanelScacchiera ps=new PanelScacchiera(scacchiera);
 		PanelInformazioni pi= new PanelInformazioni(scacchiera, nome1, nome2);

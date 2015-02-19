@@ -98,7 +98,7 @@ public class PanelSceltaPedina extends JPanel{
 	public void setScacchiera(Scacchiera scacchiera){this.scacchiera=scacchiera;}
 	
 	public void setColore(Colore colore){
-		remove(southPanel);
+		//remove(southPanel);
 		southPanel.setLayout(new GridLayout(2, 2));
 		if(colore.equals(Colore.NERO)){
 			alfiere.setIcon(alfiere_nero);

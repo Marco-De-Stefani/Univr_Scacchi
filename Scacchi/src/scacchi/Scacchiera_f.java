@@ -28,7 +28,7 @@ public class Scacchiera_f {
 		scacchiera[7][0] = new Torre(Colore.BIANCO);
 		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
-		scacchiera[5][3] = new Regina(Colore.BIANCO);
+		scacchiera[7][3] = new Regina(Colore.BIANCO);
 		scacchiera[7][4] = new Re(Colore.BIANCO);
 		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
 		scacchiera[7][6] = new Cavallo(Colore.BIANCO);

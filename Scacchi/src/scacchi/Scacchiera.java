@@ -51,6 +51,7 @@ public class Scacchiera {
 		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
 		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][7] = new Torre(Colore.BIANCO);
+		
 		for(int i = 0; i < 8; i++)
 			scacchiera[6][i] = new Pedone(Colore.BIANCO);
 		
@@ -78,7 +79,7 @@ public class Scacchiera {
 	 * 			2 = la pedina può mangiare l'altra pedina posizionata qui
 	 */
 	public int[][] getMoves(Position pos){
-		evoluzionePedone(new Position(0, 0));/////////////////////////////////////////////////////////////////////////////////////////////////////
+		//evoluzionePedone(new Position(0, 0));/////////////////////////////////////////////////////////////////////////////////////////////////////
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
 			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);	
 			return moves;
@@ -280,7 +281,6 @@ public class Scacchiera {
 					//per ogni mia pedina, se posso salvare il re
 					ArrayList<Position> r=getMovesArrayList(new Position(i, j));
 					for(Position p:r){
-						//METODO DEL MIGLIOOOOOOOOOOOOOOO
 						if(canMove(new Position(i, j), p))
 							//se true, esiste una mossa che mi salva dallo scacco
 							return true;
