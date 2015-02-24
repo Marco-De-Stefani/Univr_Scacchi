@@ -16,7 +16,6 @@ public class Scacchiera {
 	private Pedina[] mangiate;
 	private Colore turno=Colore.BIANCO;
 	private int countMangiate;
-	private Pedina pedinaPromozione;
 	Semaphore semaforo=new Semaphore(0);
 	Controller c;
 	//////////////////////////////////////////////////////////////
