@@ -26,36 +26,7 @@ public class Scacchiera {
 	
 	
 	public Scacchiera(){
-		
-		//inizializzazione della scacchiera 8x8
-		scacchiera = new Pedina[8][8];
-		mangiate = new Pedina[32];
-		countMangiate = 0;
-		//carico la squadra nera
-		scacchiera[0][0] = new Torre(Colore.NERO);
-		scacchiera[0][1] = new Cavallo(Colore.NERO);
-		scacchiera[0][2] = new Alfiere(Colore.NERO);
-		scacchiera[0][3] = new Regina(Colore.NERO);
-		scacchiera[0][4] = new Re(Colore.NERO);
-		scacchiera[0][5] = new Alfiere(Colore.NERO);
-		scacchiera[0][6] = new Cavallo(Colore.NERO);
-		scacchiera[0][7] = new Torre(Colore.NERO);
-		for(int i = 0; i < 8; i++)
-			scacchiera[1][i] = new Pedone(Colore.NERO);
-		
-		//carico la squadra bianca
-		scacchiera[7][0] = new Torre(Colore.BIANCO);
-		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
-		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
-		scacchiera[7][3] = new Regina(Colore.BIANCO);
-		scacchiera[7][4] = new Re(Colore.BIANCO);
-		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
-		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
-		scacchiera[7][7] = new Torre(Colore.BIANCO);
-		
-		for(int i = 0; i < 8; i++)
-			scacchiera[6][i] = new Pedone(Colore.BIANCO);
-		
+		restart();
 	}
 	
 	public Pedina[][] getScacchiera(){return scacchiera;}
@@ -110,6 +81,9 @@ public class Scacchiera {
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo,PanelScacchiera ps){
 		
+		
+		
+		
 		if(!canMove(partenza, arrivo)){	//se non può muovere, non fa niente
 			JOptionPane.showMessageDialog(null,"Mossa non valida, metterebbe il re sotto scacco!","Mossa non valida",JOptionPane.ERROR_MESSAGE);
 			return false;
@@ -159,6 +133,8 @@ public class Scacchiera {
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		
 		//controllo se la mossa provoca lo scacco del re con lo stesso colore
+
+		
 		if(scacco() == 1 &&
 				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.BIANCO)
 				|| scacco() == -1 &&
@@ -272,5 +248,37 @@ public class Scacchiera {
 				}
 			}
 		return false;
+	}
+	
+	public void restart(){
+		scacchiera = new Pedina[8][8];
+		mangiate = new Pedina[32];
+		countMangiate = 0;
+		turno=Colore.BIANCO;
+		//carico la squadra nera
+		scacchiera[0][0] = new Torre(Colore.NERO);
+		scacchiera[0][1] = new Cavallo(Colore.NERO);
+		scacchiera[0][2] = new Alfiere(Colore.NERO);
+		scacchiera[0][3] = new Regina(Colore.NERO);
+		scacchiera[0][4] = new Re(Colore.NERO);
+		scacchiera[0][5] = new Alfiere(Colore.NERO);
+		scacchiera[0][6] = new Cavallo(Colore.NERO);
+		scacchiera[0][7] = new Torre(Colore.NERO);
+		for(int i = 0; i < 8; i++)
+			scacchiera[1][i] = new Pedone(Colore.NERO);
+		
+		//carico la squadra bianca
+		scacchiera[7][0] = new Torre(Colore.BIANCO);
+		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
+		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
+		scacchiera[7][3] = new Regina(Colore.BIANCO);
+		scacchiera[7][4] = new Re(Colore.BIANCO);
+		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
+		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
+		scacchiera[7][7] = new Torre(Colore.BIANCO);
+		
+		for(int i = 0; i < 8; i++)
+			scacchiera[6][i] = new Pedone(Colore.BIANCO);
+		
 	}
 }

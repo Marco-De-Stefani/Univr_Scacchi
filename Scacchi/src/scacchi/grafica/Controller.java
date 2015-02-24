@@ -1,15 +1,13 @@
 package scacchi.grafica;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
+import scacchi.Colore;
 import scacchi.Position;
 import scacchi.Scacchiera;
 
@@ -17,9 +15,8 @@ public class Controller {
 
 	boolean evidenziate = false;
 	Position oldPos;
-
+	
 	public Controller(PanelScacchiera ps, PanelInformazioni pi, Scacchiera scacchiera) {
-
 		// listener dela scacchiera
 		ps.addMouseListener(new MouseAdapter() {
 			@Override
@@ -72,11 +69,51 @@ public class Controller {
 							ps.repaint();
 						}
 					}
-					//evidenziate = false;
+					
+					
+					int scacco=scacchiera.scacco();
+					boolean sm=false;
+					if(scacco!=0)
+						sm=scacchiera.scaccoMatto();
+					System.out.println();
+					if(scacco!=0 && sm){
+						Colore turno;
+						if (scacchiera.getTurno().equals(Colore.BIANCO))
+							turno = Colore.NERO;
+						else {
+							turno = Colore.BIANCO;
+						}
+						int a=JOptionPane.showConfirmDialog(null,"Complimenti giocatore " +turno+" hai vinto la partita! \n vuoi rifarne un altra?","Scacco Matto",JOptionPane.YES_NO_OPTION);
+						//0=si 1=no
+						//aggiornamento statistiche, se le facciamo TODO
+						
+						//////////////////////////////////////////////////////////////////////////
+						
+						
+						
+						
+						
+						if(a==0){
+							scacchiera.restart();
+							ps.repaint();
+						}else{System.exit(0);}
+					}else if(scacco!=0 && !sm)JOptionPane.showMessageDialog(null,"Attenzione, il re è sotto scacco!","Scacco",JOptionPane.WARNING_MESSAGE);
+
 				}
 				
 				
 				
+			}
+		});
+
+		
+		pi.jBrestart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int a=JOptionPane.showConfirmDialog(null,"Sicuro di voler iniziare una nuova partita?","Nuova partita",JOptionPane.YES_NO_OPTION);
+				if(a==0){
+					scacchiera.restart();
+					ps.repaint();
+				}
 			}
 		});
 	}

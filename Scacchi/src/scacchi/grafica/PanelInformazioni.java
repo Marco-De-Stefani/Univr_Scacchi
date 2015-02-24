@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,7 +59,6 @@ public class PanelInformazioni extends JComponent {
 	private static final long serialVersionUID = 1L;
 
 	public PanelInformazioni(Scacchiera scacchiera, String n1, String n2) {
-		
 		mangiate=new Pedina[32];
 		
 		Dimension size = new Dimension(400,400);
@@ -70,7 +70,7 @@ public class PanelInformazioni extends JComponent {
 		
 		this.nome1 = n1;
 		this.nome2 = n2;
-		this.scacchiera = scacchiera;
+		this.scacchiera=scacchiera;
 		
 		setLayout(null);
 		
@@ -90,7 +90,7 @@ public class PanelInformazioni extends JComponent {
 		
 		jBrestart.setBounds(new Rectangle(75,150,100,80));
 		jBstatistiche.setBounds(new Rectangle(225,150,100,80));
-		jBrestart.setText("Nuova\n Partita");
+		jBrestart.setText("Ricomincia");
 		jBstatistiche.setText("Statistiche");
 		
 		
@@ -113,7 +113,6 @@ public class PanelInformazioni extends JComponent {
 		g2.drawImage(sfondo, 0, 0, 400, 400,null);
 		
 		if(scacchiera.getTurno()==Colore.BIANCO){
-
 			g.setColor(c1);
 			g.fillOval(120, 9, 20, 20);
 			g.setColor(c2);
@@ -130,8 +129,8 @@ public class PanelInformazioni extends JComponent {
 		y=40;
 		x1=10;
 		y1=400-70;
-		g2.drawRect(x, y, 380, 60);
-		g2.drawRect(x1,y1, 380, 60);
+		//g2.drawRect(x, y, 380, 60);
+		//g2.drawRect(x1,y1, 380, 60);
 		
 		stampaPedineMangiate(g);
 		
@@ -146,22 +145,40 @@ public class PanelInformazioni extends JComponent {
 			if (p!=null && p.getColore().equals(Colore.BIANCO)) {
 				switch (p.getNome()) {
 				case RE:
-					g2.drawImage(re_bianco,x1+(n1*30), y1, 30, 30, null);
+					if(n1<12)
+						g2.drawImage(re_bianco,x1+(n1*30), y1, 30, 30, null);
+					else
+						g2.drawImage(re_bianco,x1+((n1-12)*30), y1+30, 30, 30, null);
 					break;
 				case REGINA:
-					g2.drawImage(regina_bianco,x1+(n1*30), y1, 30, 30, null);
+					if(n1<12)
+						g2.drawImage(regina_bianco,x1+(n1*30), y1, 30, 30, null);
+					else
+						g2.drawImage(regina_bianco,x1+((n1-12)*30), y1+30, 30, 30, null);
 					break;
 				case ALFIERE:
-					g2.drawImage(alfiere_bianco, x1+(n1*30), y1, 30, 30, null);
+					if(n1<12)
+						g2.drawImage(alfiere_bianco, x1+(n1*30), y1, 30, 30, null);
+					else
+						g2.drawImage(alfiere_bianco,x1+((n1-12)*30), y1+30, 30, 30, null);
 					break;
 				case TORRE:
-					g2.drawImage(torre_bianco, x1+(n1*30), y1, 30, 30, null);
+					if(n1<12)
+						g2.drawImage(torre_bianco, x1+(n1*30), y1, 30, 30, null);
+					else
+						g2.drawImage(torre_bianco,x1+((n1-12)*30), y1+30, 30, 30, null);
 					break;
 				case CAVALLO:
-					g2.drawImage(cavallo_bianco, x1+(n1*30), y1, 30, 30, null);
+					if(n1<12)
+						g2.drawImage(cavallo_bianco, x1+(n1*30), y1, 30, 30, null);
+					else
+						g2.drawImage(cavallo_bianco,x1+((n1-12)*30), y1+30, 30, 30, null);
 					break;
 				case PEDONE:
-					g2.drawImage(pedone_bianco, x1+(n1*30), y1, 30, 30, null);
+					if(n1<12)
+						g2.drawImage(pedone_bianco, x1+(n1*30), y1, 30, 30, null);
+					else
+						g2.drawImage(pedone_bianco,x1+((n1-12)*30), y1+30, 30, 30, null);
 					break;
 				}
 				n1++;
@@ -169,22 +186,40 @@ public class PanelInformazioni extends JComponent {
 			if (p!=null && p.getColore().equals(Colore.NERO)) {
 				switch (p.getNome()) {
 				case RE:
-					g2.drawImage(re_nero,x+(n2*30),y, 30, 30, null);
+					if(n2<12)
+						g2.drawImage(re_nero,x+(n2*30),y, 30, 30, null);
+					else
+						g2.drawImage(re_nero,x+((n2-12)*30), y+30, 30, 30, null);
 					break;
 				case REGINA:
-					g2.drawImage(regina_nero,x+(n2*30), y, 30, 30, null);
+					if(n2<12)
+						g2.drawImage(regina_nero,x+(n2*30), y, 30, 30, null);
+					else
+						g2.drawImage(regina_nero,x+((n2-12)*30), y+30, 30, 30, null);
 					break;
 				case ALFIERE:
-					g2.drawImage(alfiere_nero, x+(n2*30), y, 30, 30, null);
+					if(n2<12)
+						g2.drawImage(alfiere_nero, x+(n2*30), y, 30, 30, null);
+					else
+						g2.drawImage(alfiere_nero,x+((n2-12)*30), y+30, 30, 30, null);
 					break;
 				case TORRE:
-					g2.drawImage(torre_nero, x+(n2*30), y, 30, 30, null);
+					if(n2<12)
+						g2.drawImage(torre_nero, x+(n2*30), y, 30, 30, null);
+					else
+						g2.drawImage(torre_nero,x+((n2-12)*30), y+30, 30, 30, null);
 					break;
 				case CAVALLO:
-					g2.drawImage(cavallo_nero, x+(n2*30), y, 30, 30, null);
+					if(n2<12)
+						g2.drawImage(cavallo_nero, x+(n2*30), y, 30, 30, null);
+					else
+						g2.drawImage(cavallo_nero,x+((n2-12)*30), y+30, 30, 30, null);
 					break;
 				case PEDONE:
-					g2.drawImage(pedone_nero, x1+(n2*30), y, 30, 30, null);
+					if(n2<12)
+						g2.drawImage(pedone_nero, x1+(n2*30), y, 30, 30, null);
+					else
+						g2.drawImage(pedone_nero,x+((n2-12)*30), y+30, 30, 30, null);
 					break;
 				}
 				n2++;
