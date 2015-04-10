@@ -98,6 +98,10 @@ public class Scacchiera {
 			return false;
 		}
 		
+		if(getMoves(partenza)[arrivo.getRiga()][arrivo.getColonna()] == 0){	//mossa non valida
+			return false;
+		}
+		
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
 			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 			countMangiate++;
