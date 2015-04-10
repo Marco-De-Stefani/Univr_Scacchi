@@ -27,12 +27,28 @@ public class TestScacchiera {
 	@Test
 	public void testGetMoves() {
 		Scacchiera scacchiera = new Scacchiera();
-		int [][] mosse = scacchiera.getMoves(new Position(1,0));
-		System.out.println(mosse[2][0]);
-		//Assert.assertTrue(mosse[2][0] == 1);
-		//Assert.assertFalse(mosse[2][0] == 2);
-		//Assert.assertFalse(mosse[2][0] == 0);
-		//Assert.assertFalse(mosse[3][0] == 1);
+		int [][] mosse = new int[8][8];
+		
+//		for(int i = 0; i<8; i++){
+//			for(int j = 0; j<8; j++)
+//				System.out.print(mosse[i][j] + "-");
+//			System.out.println();
+//		}
+		mosse = scacchiera.getMoves(new Position(1,1));
+		Assert.assertFalse(mosse[2][1] == 1);	//muovono prima le pedine bianche
+		
+		mosse = scacchiera.getMoves(new Position(6,1));
+		Assert.assertTrue(mosse[5][1] == 1);
+		
+	}
+	
+	
+	@Test
+	public void testMove() {
+		Scacchiera scacchiera = new Scacchiera();
+		
+		Assert.assertTrue(scacchiera.move(new Position(1,2), new Position(5,2), null));
+		//Assert.assertTrue(scacchiera.move(new Position(6,2), new Position(5,2), null));
 	}
 
 }
