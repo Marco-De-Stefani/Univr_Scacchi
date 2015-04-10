@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import scacchi.Alfiere;
 import scacchi.Colore;
 import scacchi.Pedina;
 import scacchi.Pedone;
@@ -38,8 +39,7 @@ public class PanelInformazioni extends JComponent {
 	private Image pedone_nero = new ImageIcon(this.getClass().getResource("\\immagini\\pedone_n.png")).getImage();
 
 	private Image sfondo = new ImageIcon(this.getClass().getResource("\\immagini\\sfondo_info.png")).getImage();
-	// private Image imgScacco = new
-	// ImageIcon(this.getClass().getResource("\\immagini\\imgScacco.png")).getImage();
+    private Image imgScacco = new ImageIcon(this.getClass().getResource("\\immagini\\imgScacco.png")).getImage();
 
 	private int n1 = 0, n2 = 0;
 	Scacchiera scacchiera;
@@ -48,8 +48,6 @@ public class PanelInformazioni extends JComponent {
 	JLabel jLn1 = new JLabel();
 	JLabel jLn2 = new JLabel();
 	JButton jBrestart = new JButton();
-
-	int x, y, x1, y1;
 
 	Color c1 = Color.RED;
 	Color c2 = Color.GREEN;
@@ -122,8 +120,7 @@ public class PanelInformazioni extends JComponent {
 		}
 
 		if (scacco) {
-			// g.drawImage(imgScacco, 20, 150, 200, 80, null);
-			System.out.println("SCaccoIMMAGINEE");
+			 g.drawImage(imgScacco, 20, 150, 200, 80, null);
 		}
 
 		stampaPedineMangiate(g);
@@ -133,6 +130,8 @@ public class PanelInformazioni extends JComponent {
 	private void stampaPedineMangiate(Graphics g2) {
 		n1 = 0;
 		n2 = 0;
+		int x=20, y=40, x1=20, y1=330;
+	
 		for (Pedina p : mangiate) {
 			if (p != null && p.getColore().equals(Colore.BIANCO)) {
 				switch (p.getNome()) {

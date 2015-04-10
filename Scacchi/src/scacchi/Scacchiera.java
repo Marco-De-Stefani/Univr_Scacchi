@@ -17,14 +17,28 @@ public class Scacchiera {
 	private Colore turno=Colore.BIANCO;
 	private int countMangiate;
 	Controller c;
-	//////////////////////////////////////////////////////////////
-	// TODO implementare nel possibleMoves l'iterator vd Gioco15
-	//////////////////////////////////////////////////////////////
+
 	
 	
 	
-	public Scacchiera(){
-		restart();
+	public Scacchiera(boolean test){
+		if(test){
+			scacchiera = new Pedina[8][8];
+			mangiate = new Pedina[32];
+			countMangiate = 0;
+			turno=Colore.BIANCO;
+			scacchiera[0][3] = new Re(Colore.NERO);
+			scacchiera[2][1] = new Pedone(Colore.NERO);
+			scacchiera[3][0] = new Pedone(Colore.BIANCO);
+			scacchiera[4][3] = new Regina(Colore.NERO);
+			scacchiera[5][0] = new Cavallo(Colore.BIANCO);
+			scacchiera[5][6] = new Alfiere(Colore.BIANCO);
+			scacchiera[6][0] = new Pedone(Colore.NERO);
+			scacchiera[4][7] = new Torre(Colore.NERO);
+			scacchiera[7][4] = new Re(Colore.BIANCO);
+		}else{
+			restart();
+		}
 	}
 	
 	public Pedina[][] getScacchiera(){return scacchiera;}
@@ -244,6 +258,7 @@ public class Scacchiera {
 			}
 		return false;
 	}
+	
 	
 	public void restart(){
 		scacchiera = new Pedina[8][8];
