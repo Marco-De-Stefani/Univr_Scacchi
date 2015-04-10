@@ -78,7 +78,7 @@ public class TestPedine {
 	public void testMossePossibiliRegina() {
 		Regina t=(Regina) s.getPedina(new Position(4,3));
 		int mosse[][]=t.mossePossibili(new Position(4,3), s.getScacchiera());
-		for(int i=1;i<8;i++){
+		for(int i=1;i<7;i++){
 			if(i!=4)
 				Assert.assertTrue(mosse[i][3]==1);
 		}

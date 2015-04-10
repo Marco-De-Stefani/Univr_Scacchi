@@ -31,11 +31,11 @@ public class Scacchiera {
 			scacchiera[2][1] = new Pedone(Colore.NERO);
 			scacchiera[3][0] = new Pedone(Colore.BIANCO);
 			scacchiera[4][3] = new Regina(Colore.NERO);
+			scacchiera[4][7] = new Torre(Colore.NERO);
 			scacchiera[5][0] = new Cavallo(Colore.BIANCO);
 			scacchiera[5][6] = new Alfiere(Colore.BIANCO);
 			scacchiera[6][0] = new Pedone(Colore.NERO);
-			scacchiera[4][7] = new Torre(Colore.NERO);
-			scacchiera[7][4] = new Re(Colore.BIANCO);
+			scacchiera[7][3] = new Re(Colore.BIANCO);
 		}else{
 			restart();
 		}
