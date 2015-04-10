@@ -16,7 +16,6 @@ public class Scacchiera {
 	private Pedina[] mangiate;
 	private Colore turno=Colore.BIANCO;
 	private int countMangiate;
-	Semaphore semaforo=new Semaphore(0);
 	Controller c;
 	//////////////////////////////////////////////////////////////
 	// TODO implementare nel possibleMoves l'iterator vd Gioco15
@@ -79,9 +78,6 @@ public class Scacchiera {
 	//mangio=true, sennò false
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo,PanelScacchiera ps){
-		
-		
-		
 		
 		if(!canMove(partenza, arrivo)){	//se non può muovere, non fa niente
 			JOptionPane.showMessageDialog(null,"Mossa non valida, metterebbe il re sotto scacco!","Mossa non valida",JOptionPane.ERROR_MESSAGE);
@@ -184,7 +180,7 @@ public class Scacchiera {
 				}
 			}
 		}
-		//System.out.println("trovati re");
+
 		
 		int [][] mosPos = null;
 		for(int i = 0; i < 8; i++){
@@ -203,7 +199,7 @@ public class Scacchiera {
 				}
 			}
 		}
-		//System.out.println("no scaghi ai re");
+
 		return 0;
 	}
 	

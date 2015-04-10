@@ -34,13 +34,11 @@ public class Controller {
 						return;
 					}
 					//caso iniziale, si sceglie la pedina da muovere (evidenziate = false)
-					System.out.println("x=" + x + " y=" + y);
 					evidenziate = true;
 					oldPos = new Position(x, y);				//salvo la posizione attuale
 					ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
 					ps.repaint();
 				} else {
-					System.out.println("caso 2");
 					//caso evidenziate = true
 					if (ps.getEvidenziate()[x][y] != 0) {
 						//se la posizione (x,y) è permessa (codici 1 o 2, no 0)
@@ -48,14 +46,12 @@ public class Controller {
 							//se mangio
 							pi.setPedineMangiate(scacchiera.getPedineMangiate());
 							pi.repaint();
-							//ps.repaint();
 						}
 						//il metodo move() passa il turno, quindi bisogna cancellare le caselle evidenziate
 						ps.setEvidenziate(new int[8][8],evidenziate);
 						ps.repaint();
 						evidenziate = false;
 					} else {
-						System.out.println("caso 3");
 						//se la posizione (x,y) non è permessa (codice 0)
 						if (scacchiera.getScacchiera()[x][y] != null &&
 								scacchiera.getScacchiera()[x][y].getColore().equals(scacchiera.getTurno())) {
@@ -65,7 +61,7 @@ public class Controller {
 							ps.setEvidenziate(scacchiera.getMoves(new Position(x, y)),evidenziate);
 							ps.repaint();
 						} else {
-							System.err.println("ERRORACCIO; tentativo invalido di mossa");
+							System.err.println("ERRORE; tentativo invalido di mossa");
 							ps.repaint();
 						}
 					}
@@ -73,31 +69,29 @@ public class Controller {
 					
 					int scacco=scacchiera.scacco();
 					boolean sm=false;
-					if(scacco!=0)
+					if(scacco!=0){
 						sm=scacchiera.scaccoMatto();
-					System.out.println();
+						pi.setScacco(true);
+					}else{
+						pi.setScacco(false);
+					}
 					if(scacco!=0 && sm){
 						Colore turno;
+						//se c'è scacco matto, ha vinto l'avversario
 						if (scacchiera.getTurno().equals(Colore.BIANCO))
 							turno = Colore.NERO;
 						else {
 							turno = Colore.BIANCO;
 						}
-						int a=JOptionPane.showConfirmDialog(null,"Complimenti giocatore " +turno+" hai vinto la partita! \n vuoi rifarne un altra?","Scacco Matto",JOptionPane.YES_NO_OPTION);
-						//0=si 1=no
-						//aggiornamento statistiche, se le facciamo TODO
+						int jop=JOptionPane.showConfirmDialog(null,"Complimenti giocatore " +turno+" hai vinto la partita! \n vuoi rifarne un altra?","Scacco Matto",JOptionPane.YES_NO_OPTION);
+
 						
-						//////////////////////////////////////////////////////////////////////////
-						
-						
-						
-						
-						
-						if(a==0){
+						if(jop==0){
 							scacchiera.restart();
 							ps.repaint();
+							pi.repaint();
 						}else{System.exit(0);}
-					}else if(scacco!=0 && !sm)JOptionPane.showMessageDialog(null,"Attenzione, il re è sotto scacco!","Scacco",JOptionPane.WARNING_MESSAGE);
+					}
 
 				}
 				
@@ -112,6 +106,7 @@ public class Controller {
 				int a=JOptionPane.showConfirmDialog(null,"Sicuro di voler iniziare una nuova partita?","Nuova partita",JOptionPane.YES_NO_OPTION);
 				if(a==0){
 					scacchiera.restart();
+					pi.repaint();
 					ps.repaint();
 				}
 			}

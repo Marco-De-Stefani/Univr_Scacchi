@@ -39,22 +39,22 @@ public class PanelInformazioni extends JComponent {
 	private Image pedone_nero = new ImageIcon(this.getClass().getResource("\\immagini\\pedone_n.png")).getImage();
 	
 	private Image sfondo=new ImageIcon(this.getClass().getResource("\\immagini\\sfondo_info.png")).getImage();
+	//private Image imgScacco = new ImageIcon(this.getClass().getResource("\\immagini\\imgScacco.png")).getImage();
 	
 	private int n1=0,n2=0;
-	int nStampate=0;
 	Scacchiera scacchiera;
 	String nome1, nome2;
 	Pedina[] mangiate;
 	JLabel jLn1 = new JLabel();
 	JLabel jLn2 = new JLabel();
 	JButton jBrestart=new JButton();
-	JButton jBstatistiche=new JButton();
 	
 	int x,y,x1,y1;
 	
 	
 	Color c1=Color.RED;
 	Color c2=Color.GREEN;
+    boolean scacco;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -88,13 +88,10 @@ public class PanelInformazioni extends JComponent {
 		jLn2.setForeground(new Color(45,34,23));
 		
 		
-		jBrestart.setBounds(new Rectangle(75,150,100,80));
-		jBstatistiche.setBounds(new Rectangle(225,150,100,80));
+		jBrestart.setBounds(new Rectangle(280,150,100,80));
 		jBrestart.setText("Ricomincia");
-		jBstatistiche.setText("Statistiche");
+
 		
-		
-		add(jBstatistiche);
 		add(jBrestart);
 		add(jLn1);
 		add(jLn2);
@@ -108,6 +105,7 @@ public class PanelInformazioni extends JComponent {
 	
 	// per stampare le pedine mangiate e l'interfaccia utente
 	public void paintComponent(Graphics g) {
+		
 		Graphics2D g2 = (Graphics2D) g;
 		
 		g2.drawImage(sfondo, 0, 0, 400, 400,null);
@@ -124,13 +122,10 @@ public class PanelInformazioni extends JComponent {
 			g.fillOval(120, 299, 20, 20);
 		}
 		
-		g2.setColor(Color.RED);
-		x=10;
-		y=40;
-		x1=10;
-		y1=400-70;
-		//g2.drawRect(x, y, 380, 60);
-		//g2.drawRect(x1,y1, 380, 60);
+		if(scacco){
+			//g.drawImage(imgScacco, 20, 150, 200, 80, null);
+			System.out.println("SCaccoIMMAGINEE");
+		}
 		
 		stampaPedineMangiate(g);
 		
@@ -225,5 +220,10 @@ public class PanelInformazioni extends JComponent {
 				n2++;
 			}
 		}//for
+	}
+
+
+	public void setScacco(boolean scacco) {
+		this.scacco=scacco;
 	}
 }
