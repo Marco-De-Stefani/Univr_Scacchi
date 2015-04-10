@@ -8,9 +8,13 @@ public class Re extends Pedina{
 		super(Nome.RE, colore);
 		
 	}
-
+	/**
+	 * ritorna le mosse possibili che il Re per la prossima mossa
+	 * ricordando che si puo' muovere solo di una casella
+	 * controlla, in base alla posizione in cui si trova, che le mosse 	 
+	 * rimagano dentro la scacchiera 
+	 */
 	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera) {
-		//Position position = new Position(riga, colonna);
 		ArrayList<Position> positions = new ArrayList<Position>();
 		int[][] mosse = new int[8][8];
 		
@@ -27,17 +31,17 @@ public class Re extends Pedina{
 		positions.add(new Position(posPedina.getRiga() - 1, posPedina.getColonna() - 1));	// diagonale sx o alto o basso
 		
 
-		boolean modif;
+		boolean controllo;
 		do{
-			modif = false;
+			controllo = false;
 			for (int i = 0; i < positions.size(); i++) {
 			Position pos=positions.get(i);
 				if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
-					modif = true;
+					controllo = true;
 					positions.remove(pos);
 				}
 			}
-		}while(modif);
+		}while(controllo);
 		
 		for(Position p : positions)
 			if(scacchiera[p.getRiga()][p.getColonna()] == null){

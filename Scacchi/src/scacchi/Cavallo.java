@@ -8,10 +8,11 @@ public class Cavallo extends Pedina {
 		super(Nome.CAVALLO, colore);
 	}
 
-	/*
-	 * ritorna le posizioni posiibili del cavallo per la prossima mossa
-	 * controlla le dimensioni della scacchiera ma non controlla le eventuali
-	 * altre pedine
+	/**
+	 * ritorna le mosse possibili del Cavallo per la prossima mossa
+	 * ricordando che si muove solo a L
+	 * controlla in base alla posizione in cui si trova guarda che le mosse 	 
+	 * rimagano dentro la scacchiera 
 	 */
 	//modificare positions, da AL a array di 8 el.
 	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera){
@@ -30,17 +31,17 @@ public class Cavallo extends Pedina {
 		positions.add(new Position(posPedina.getRiga() + 2, posPedina.getColonna() + 1));
 
 		// scorro l'array e cerco x o y che siano <0 || >8
-		boolean miglio;
+		boolean controllo;
 		do{
-				miglio=false;
+				controllo=false;
 			for (int i=0;i<positions.size();i++) {
 				Position pos=positions.get(i);
 				if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
-					miglio=true;
+					controllo=true;
 					positions.remove(pos);	//punti ok dentro il range della scacchiera
 				}
 			}
-		}while(miglio);
+		}while(controllo);
 		
 		
 		for(Position p : positions)
