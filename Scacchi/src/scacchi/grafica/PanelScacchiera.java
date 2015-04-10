@@ -2,6 +2,7 @@ package scacchi.grafica;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -22,7 +23,6 @@ import scacchi.Position;
 import scacchi.Scacchiera;
 
 public class PanelScacchiera extends JComponent {
-	private String basePath = new File("").getAbsolutePath();
 	
 	private Image re_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\re_b.png")).getImage();
 	private Image regina_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\regina_b.png")).getImage();
@@ -60,17 +60,14 @@ public class PanelScacchiera extends JComponent {
 	public int[][] getEvidenziate(){return this.evid;}
 	
 	public PanelScacchiera(Scacchiera scacchiera) {
-		this.scacchiera = scacchiera;
-		
-		Dimension size = new Dimension(img.getHeight(null), img.getHeight(null));
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-		setSize(size);
-		
+		this.scacchiera = scacchiera;	
+		Dimension d=new Dimension(400,400);
+		setSize(d);
+		setPreferredSize(d);
+		setMaximumSize(d);
+		setMinimumSize(d);
 		setLayout(null);
 		
-
 	}
 
 	public void paintComponent(Graphics g) {

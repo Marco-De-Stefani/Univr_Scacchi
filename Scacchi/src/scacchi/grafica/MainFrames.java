@@ -30,7 +30,6 @@ public class MainFrames {
 	      if (result == JOptionPane.OK_OPTION) {
 	    	  FrameBase b = new FrameBase(nome1.getText(),nome2.getText());
 	    	  b.setVisible(true);
-	    	  b.setResizable(false);
 	      }
 	}
 

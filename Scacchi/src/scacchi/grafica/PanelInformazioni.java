@@ -57,18 +57,10 @@ public class PanelInformazioni extends JComponent {
 
 	public PanelInformazioni(Scacchiera scacchiera, String n1, String n2) {
 		mangiate = new Pedina[32];
-
-		Dimension size = new Dimension(400, 400);
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-		setSize(size);
-		setLayout(null);
-
 		this.nome1 = n1;
 		this.nome2 = n2;
 		this.scacchiera = scacchiera;
-
+		setSize(new Dimension(400,400));
 		setLayout(null);
 
 		jLn1.setFont(new Font("Thaoma", Font.PLAIN, 19));
@@ -82,7 +74,7 @@ public class PanelInformazioni extends JComponent {
 		jLn1.setForeground(new Color(255, 255, 218));
 		jLn2.setForeground(new Color(45, 34, 23));
 
-		jBrestart.setBounds(new Rectangle(280, 150, 100, 80));
+		jBrestart.setBounds(new Rectangle(270, 150, 100, 80));
 		jBrestart.setText("Ricomincia");
 
 		add(jBrestart);
@@ -111,12 +103,12 @@ public class PanelInformazioni extends JComponent {
 			g.setColor(c1);
 			g.fillOval(120, 9, 20, 20);
 			g.setColor(c2);
-			g.fillOval(120, 299, 20, 20);
+			g.fillOval(120, 300, 20, 20);
 		} else {
 			g.setColor(c2);
 			g.fillOval(120, 9, 20, 20);
 			g.setColor(c1);
-			g.fillOval(120, 299, 20, 20);
+			g.fillOval(120, 300, 20, 20);
 		}
 
 		if (scacco) {

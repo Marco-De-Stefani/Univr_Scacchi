@@ -1,14 +1,10 @@
 package scacchi.tests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import scacchi.Alfiere;
 import scacchi.Cavallo;
-import scacchi.Colore;
-import scacchi.Pedina;
 import scacchi.Pedone;
 import scacchi.Position;
 import scacchi.Re;

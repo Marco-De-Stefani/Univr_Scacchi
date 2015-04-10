@@ -92,7 +92,7 @@ public class FrameSceltaPedina extends JFrame {
 		add(northPanel, BorderLayout.NORTH);
 		add(southPanel, BorderLayout.SOUTH);
 
-		this.setSize(250, 220);
+		//this.setSize(250, 220);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 	}

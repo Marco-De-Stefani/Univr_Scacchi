@@ -1,5 +1,6 @@
 package scacchi.grafica;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -13,13 +14,15 @@ public class FrameBase extends JFrame{
 		Scacchiera scacchiera=new Scacchiera(true);
 		PanelScacchiera ps=new PanelScacchiera(scacchiera);
 		PanelInformazioni pi= new PanelInformazioni(scacchiera, nome1, nome2);
-		Controller c=new Controller(ps, pi, scacchiera);
-		
-		setLayout(new GridLayout(1,2));//scacchiera-nome1-nome2 ?
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		new Controller(ps, pi, scacchiera);
+		setLayout(new GridLayout(1,0));
+		setResizable(false);
 		add(ps);
 		add(pi);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
+		setVisible(true);
+		
 	}
 	
 	
