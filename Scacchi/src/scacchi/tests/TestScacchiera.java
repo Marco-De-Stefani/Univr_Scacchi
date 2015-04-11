@@ -58,10 +58,13 @@ public class TestScacchiera {
 	@Test
 	public void testCanMove() {
 		Scacchiera scacchiera = new Scacchiera(true);
-		
-		scacchiera.move(new Position(5,6), new Position(4,7), null);
-		Assert.assertFalse(scacchiera.canMove(new Position(2,1), new Position(3,1)));
-		Assert.assertTrue(scacchiera.canMove(new Position(0,3), new Position(0,4)));
+		//scacchiera.move(new Position(7,3), new Position(7,4), null);
+		//scacchiera.move(new Position(2,1), new Position(3,1), null);
+		//scacchiera.move(new Position(5,6), new Position(4,7), null);
+		//Assert.assertFalse(scacchiera.canMove(new Position(2,1), new Position(3,1)));
+		//Assert.assertTrue(scacchiera.canMove(new Position(0,3), new Position(0,4)));
+		Assert.assertFalse(scacchiera.canMove(new Position(5,6), new Position(4,5)));
+		Assert.assertTrue(scacchiera.canMove(new Position(7,3), new Position(7,4)));
 	}
 	
 	
@@ -69,21 +72,38 @@ public class TestScacchiera {
 	public void testScacco() {
 		Scacchiera scacchiera = new Scacchiera(true);
 		
-		scacchiera.move(new Position(5,6), new Position(4,7), null);
-		Assert.assertTrue(scacchiera.scacco() == -1);	//scacco a re nero
+		Assert.assertTrue(scacchiera.scacco() == 1);	//scacco a re bianco
 		
-		scacchiera.move(new Position(0,3), new Position(0,4), null);
+		scacchiera.move(new Position(7,3), new Position(7,4), null);
 		Assert.assertTrue(scacchiera.scacco() == 0);	//nessuno scacco
 		
-		scacchiera.move(new Position(4,7), new Position(3,6), null);
-		scacchiera.move(new Position(4,3), new Position(4,4), null);
-		Assert.assertTrue(scacchiera.scacco() == 1);	//scacco a re bianco
+		scacchiera.move(new Position(0,3), new Position(1,3), null);
+		scacchiera.move(new Position(5,6), new Position(6,5), null);
+		scacchiera.move(new Position(1,3), new Position(2,3), null);
+		scacchiera.move(new Position(6,5), new Position(5,6), null);
+		Assert.assertTrue(scacchiera.scacco() == -1);	//scacco a re nero
+		
+//		scacchiera.move(new Position(5,6), new Position(4,7), null);
+//		Assert.assertTrue(scacchiera.scacco() == -1);	//scacco a re nero
+//		scacchiera.move(new Position(0,3), new Position(0,4), null);
+//		Assert.assertTrue(scacchiera.scacco() == 0);	//nessuno scacco
+//		scacchiera.move(new Position(4,7), new Position(3,6), null);
+//		scacchiera.move(new Position(4,3), new Position(4,4), null);
+//		Assert.assertTrue(scacchiera.scacco() == 1);	//scacco a re bianco
 	}
 	
 	
 	@Test
 	public void testScaccoMatto() {
+		Scacchiera scacchiera = new Scacchiera(true);
 		
+		scacchiera.move(new Position(7,3), new Position(7,2), null);
+		scacchiera.move(new Position(6,0), new Position(7,0), null);
+		scacchiera.move(new Position(7,2), new Position(6,2), null);
+		scacchiera.move(new Position(4,7), new Position(6,7), null);
+		scacchiera.move(new Position(6,2), new Position(5,1), null);
+		scacchiera.move(new Position(7,0), new Position(6,1), null);
+		Assert.assertTrue(scacchiera.scaccoMatto());
 	}
 	
 	
