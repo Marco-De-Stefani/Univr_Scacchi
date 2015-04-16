@@ -12,6 +12,12 @@ import scacchi.Pedina;
 import scacchi.Position;
 import scacchi.Scacchiera;
 
+/**
+ * Classe che visualizza la scacchiera
+ * 
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
+ *
+ */
 public class PanelScacchiera extends JComponent {
 	
 	private Image re_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\re_b.png")).getImage();
@@ -39,13 +45,29 @@ public class PanelScacchiera extends JComponent {
 	Position oldPos;;
 	
 	private static final long serialVersionUID = 1L;
-
-	public Scacchiera getScacchieraAggiornata(){return scacchiera;}
 	
-	public void setEvidenziate(int evidenziate[][], boolean evidenz){this.evid=evidenziate;this.evidenziate=evidenz;}
+	/**
+	 * Imposta le caselle da evidenziare
+	 * 
+	 * @param evidenziate array di caselle da evidenziare
+	 * @param evidenz true = evidenzia, false = togli evidenziato
+	 */
+	public void setEvidenziate(int evidenziate[][], boolean evidenz){
+		this.evid=evidenziate;this.evidenziate=evidenz;
+	}
 	
-	public int[][] getEvidenziate(){return this.evid;}
+	/**
+	 * @return array con la posizione delle caselle evidenziate
+	 */
+	public int[][] getEvidenziate(){
+		return this.evid;
+	}
 	
+	/**
+	 * Costruttore del pannello della scacchiera
+	 * 
+	 * @param scacchiera la struttura dati della scacchiera
+	 */
 	public PanelScacchiera(Scacchiera scacchiera) {
 		this.scacchiera = scacchiera;	
 		Dimension d=new Dimension(400,400);
@@ -60,9 +82,6 @@ public class PanelScacchiera extends JComponent {
 	public void paintComponent(Graphics g) {
 		g.drawImage(img, 0, 0, null);
 		
-		//metodo miglio riceve le mosse possibili
-		
-		
 		if (evidenziate) {
 			// evidenzio le caselle
 			for (int i = 0; i < 8; i++) {
@@ -75,18 +94,23 @@ public class PanelScacchiera extends JComponent {
 						g.drawImage(evid_rosso, j * 50, i * 50, null);
 						break;
 					default:
-						// nothing
+						// non fare nulla
 					}
 				}
 			}
 		}
 
-		// continuazione, devo mettere le pedine, altro metodo
+		// continuazione, devo disegnare le pedine
 		stampaPedine(g);
 	}
 
 	// metodo che stampa le pedine
 
+	/**
+	 * disegna le pedine
+	 * 
+	 * @param g graphics del pannello
+	 */
 	private void stampaPedine(Graphics g) {
 		
 		for (int i = 0; i < 8; i++) {

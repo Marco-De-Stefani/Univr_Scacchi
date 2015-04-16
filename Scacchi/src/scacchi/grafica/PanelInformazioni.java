@@ -7,16 +7,21 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-
 import scacchi.Colore;
 import scacchi.Pedina;
 import scacchi.Scacchiera;
 
+/**
+ * Classe che visualizza le informazioni di base della partita e permette mediante l'uso di un bottone di
+ * cominciare una nuova partita
+ * 
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
+ *
+ */
 public class PanelInformazioni extends JComponent {
 
 	private Image re_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\re_b.png")).getImage();
@@ -50,6 +55,13 @@ public class PanelInformazioni extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Costruttore del pannello delle informazioni
+	 * 
+	 * @param sccacchiera la struttura dati usata per memorizzare la situazione corrente della scacchiera
+	 * @param n1 il nome del giocatore 1
+	 * @param n2 il nome del giocatore 2
+	 */
 	public PanelInformazioni(Scacchiera scacchiera, String n1, String n2) {
 		mangiate = new Pedina[32];
 		this.nome1 = n1;
@@ -79,15 +91,27 @@ public class PanelInformazioni extends JComponent {
 
 	}
 
+	/**
+	 * Imposta le pedine mangiate
+	 * 
+	 * @param mangiate l'array di pedine mangiate
+	 */
 	public void setPedineMangiate(Pedina[] mangiate) {
 		this.mangiate = mangiate;
 	}
 
+	/**
+	 * Usato per impostare la scritta "scacco" senza dover ogni volta richiamare il metodo scacco
+	 * 
+	 * @param scacco un booleano che indica se c'è scacco
+	 */
 	public void setScacco(boolean scacco) {
 		this.scacco = scacco;
 	}
 
-	// per stampare le pedine mangiate e l'interfaccia utente
+	/**
+	 * Disegna le pedine mangiate e alcune informazioni
+	 */
 	public void paintComponent(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
@@ -114,6 +138,11 @@ public class PanelInformazioni extends JComponent {
 
 	}
 
+	/**
+	 * Disegna le pedine mangiate
+	 * 
+	 * @param g2 il graphics del pannello
+	 */
 	private void stampaPedineMangiate(Graphics g2) {
 		n1 = 0;
 		n2 = 0;
@@ -224,7 +253,7 @@ public class PanelInformazioni extends JComponent {
 				}
 				n2++;
 			}
-		}// for
+		}
 	}
 
 }

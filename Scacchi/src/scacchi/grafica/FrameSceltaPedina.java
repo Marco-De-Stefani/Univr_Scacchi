@@ -20,25 +20,23 @@ import scacchi.Regina;
 import scacchi.Scacchiera;
 import scacchi.Torre;
 
+/**
+ * Classe che crea un frame e i relativi pannelli per la scelta dell'evoluzione della pedina
+ * 
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
+ *
+ */
 public class FrameSceltaPedina extends JFrame {
 
-	private ImageIcon regina_bianco = new ImageIcon(this.getClass()
-			.getResource("\\immagini\\regina_b.png"));
-	private ImageIcon alfiere_bianco = new ImageIcon(this.getClass()
-			.getResource("\\immagini\\alfiere_b.png"));
-	private ImageIcon torre_bianco = new ImageIcon(this.getClass().getResource(
-			"\\immagini\\torre_b.png"));
-	private ImageIcon cavallo_bianco = new ImageIcon(this.getClass()
-			.getResource("\\immagini\\cavallo_b.png"));
+	private ImageIcon regina_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\regina_b.png"));
+	private ImageIcon alfiere_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_b.png"));
+	private ImageIcon torre_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\torre_b.png"));
+	private ImageIcon cavallo_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_b.png"));
 
-	private ImageIcon regina_nero = new ImageIcon(this.getClass().getResource(
-			"\\immagini\\regina_n.png"));
-	private ImageIcon alfiere_nero = new ImageIcon(this.getClass().getResource(
-			"\\immagini\\alfiere_n.png"));
-	private ImageIcon torre_nero = new ImageIcon(this.getClass().getResource(
-			"\\immagini\\torre_n.png"));
-	private ImageIcon cavallo_nero = new ImageIcon(this.getClass().getResource(
-			"\\immagini\\cavallo_n.png"));
+	private ImageIcon regina_nero = new ImageIcon(this.getClass().getResource("\\immagini\\regina_n.png"));
+	private ImageIcon alfiere_nero = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_n.png"));
+	private ImageIcon torre_nero = new ImageIcon(this.getClass().getResource("\\immagini\\torre_n.png"));
+	private ImageIcon cavallo_nero = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_n.png"));
 
 	private JButton alfiere = new JButton();
 	private JButton cavallo = new JButton();

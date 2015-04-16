@@ -2,13 +2,17 @@ package scacchi.grafica;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**
+ * Classe di main che avvia il progetto
+ * 
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
+ *
+ */
 public class MainFrames {
 
 	public static void main(String[] args) {
