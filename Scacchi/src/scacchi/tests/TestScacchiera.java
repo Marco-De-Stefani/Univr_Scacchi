@@ -10,6 +10,12 @@ import scacchi.Nome;
 import scacchi.Position;
 import scacchi.Scacchiera;
 
+/**
+ * Classe di test per i principali metodi della classe Scacchiera
+ * 
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
+ *
+ */
 public class TestScacchiera {
 
 	@Test
@@ -29,11 +35,6 @@ public class TestScacchiera {
 		Scacchiera scacchiera = new Scacchiera(true);
 		int [][] mosse = new int[8][8];
 		
-//		for(int i = 0; i<8; i++){
-//			for(int j = 0; j<8; j++)
-//				System.out.print(mosse[i][j] + "-");
-//			System.out.println();
-//		}
 		mosse = scacchiera.getMoves(new Position(0,3));
 		Assert.assertFalse(mosse[1][3] == 1);	//muovono prima le pedine bianche
 		
@@ -58,11 +59,6 @@ public class TestScacchiera {
 	@Test
 	public void testCanMove() {
 		Scacchiera scacchiera = new Scacchiera(true);
-		//scacchiera.move(new Position(7,3), new Position(7,4), null);
-		//scacchiera.move(new Position(2,1), new Position(3,1), null);
-		//scacchiera.move(new Position(5,6), new Position(4,7), null);
-		//Assert.assertFalse(scacchiera.canMove(new Position(2,1), new Position(3,1)));
-		//Assert.assertTrue(scacchiera.canMove(new Position(0,3), new Position(0,4)));
 		Assert.assertFalse(scacchiera.canMove(new Position(5,6), new Position(4,5)));
 		Assert.assertTrue(scacchiera.canMove(new Position(7,3), new Position(7,4)));
 	}
@@ -82,14 +78,6 @@ public class TestScacchiera {
 		scacchiera.move(new Position(1,3), new Position(2,3), null);
 		scacchiera.move(new Position(6,5), new Position(5,6), null);
 		Assert.assertTrue(scacchiera.scacco() == -1);	//scacco a re nero
-		
-//		scacchiera.move(new Position(5,6), new Position(4,7), null);
-//		Assert.assertTrue(scacchiera.scacco() == -1);	//scacco a re nero
-//		scacchiera.move(new Position(0,3), new Position(0,4), null);
-//		Assert.assertTrue(scacchiera.scacco() == 0);	//nessuno scacco
-//		scacchiera.move(new Position(4,7), new Position(3,6), null);
-//		scacchiera.move(new Position(4,3), new Position(4,4), null);
-//		Assert.assertTrue(scacchiera.scacco() == 1);	//scacco a re bianco
 	}
 	
 	

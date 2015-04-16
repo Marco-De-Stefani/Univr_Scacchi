@@ -14,7 +14,7 @@ import scacchi.Scacchiera;
 /**
  * Classe controller: componente controller del design pattern mvc
  * 
- * @author Tommaso Dal Fior (detto Beppe), Marco De Stefani, Davide Miglioranzi
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
  *
  */
 public class Controller {
