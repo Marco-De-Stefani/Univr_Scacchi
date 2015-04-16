@@ -2,20 +2,10 @@ package scacchi.grafica;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 import scacchi.Colore;
 import scacchi.Pedina;
@@ -42,12 +32,9 @@ public class PanelScacchiera extends JComponent {
 	private Image evid_verde = new ImageIcon(this.getClass().getResource("\\immagini\\ev_verde.png")).getImage();
 
 	private Image img= new ImageIcon(this.getClass().getResource("\\immagini\\scacchiera.png")).getImage();
-	//private Image img= new ImageIcon("..\\immagini\\scacchiera.png").getImage();;
-	// caselle evidenziate, x e y del click, scacchiera (passata dal frame)
 	
 	int evid[][];
 	boolean evidenziate;
-	int x, y;
 	Scacchiera scacchiera;
 	Position oldPos;;
 	
@@ -131,7 +118,7 @@ public class PanelScacchiera extends JComponent {
 					}
 				}
 				else{
-					if (p != null && p.getColore().equals(Colore.NERO)) {//
+					if (p != null && p.getColore().equals(Colore.NERO)) {
 						switch (p.getNome()) {
 						case RE:
 							g.drawImage(re_nero, x1, y1, null);
