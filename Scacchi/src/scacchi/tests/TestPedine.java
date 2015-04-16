@@ -12,6 +12,12 @@ import scacchi.Regina;
 import scacchi.Scacchiera;
 import scacchi.Torre;
 
+/**
+ * Classe di test per le pedine
+ * 
+ * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
+ *
+ */
 public class TestPedine {
 	
 	Scacchiera s=new Scacchiera(true);
