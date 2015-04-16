@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Semaphore;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,15 +22,23 @@ import scacchi.Torre;
 
 public class FrameSceltaPedina extends JFrame {
 
-	private ImageIcon regina_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\regina_b.png"));
-	private ImageIcon alfiere_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_b.png"));
-	private ImageIcon torre_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\torre_b.png"));
-	private ImageIcon cavallo_bianco = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_b.png"));
+	private ImageIcon regina_bianco = new ImageIcon(this.getClass()
+			.getResource("\\immagini\\regina_b.png"));
+	private ImageIcon alfiere_bianco = new ImageIcon(this.getClass()
+			.getResource("\\immagini\\alfiere_b.png"));
+	private ImageIcon torre_bianco = new ImageIcon(this.getClass().getResource(
+			"\\immagini\\torre_b.png"));
+	private ImageIcon cavallo_bianco = new ImageIcon(this.getClass()
+			.getResource("\\immagini\\cavallo_b.png"));
 
-	private ImageIcon regina_nero = new ImageIcon(this.getClass().getResource("\\immagini\\regina_n.png"));
-	private ImageIcon alfiere_nero = new ImageIcon(this.getClass().getResource("\\immagini\\alfiere_n.png"));
-	private ImageIcon torre_nero = new ImageIcon(this.getClass().getResource("\\immagini\\torre_n.png"));
-	private ImageIcon cavallo_nero = new ImageIcon(this.getClass().getResource("\\immagini\\cavallo_n.png"));
+	private ImageIcon regina_nero = new ImageIcon(this.getClass().getResource(
+			"\\immagini\\regina_n.png"));
+	private ImageIcon alfiere_nero = new ImageIcon(this.getClass().getResource(
+			"\\immagini\\alfiere_n.png"));
+	private ImageIcon torre_nero = new ImageIcon(this.getClass().getResource(
+			"\\immagini\\torre_n.png"));
+	private ImageIcon cavallo_nero = new ImageIcon(this.getClass().getResource(
+			"\\immagini\\cavallo_n.png"));
 
 	private JButton alfiere = new JButton();
 	private JButton cavallo = new JButton();
@@ -41,7 +48,19 @@ public class FrameSceltaPedina extends JFrame {
 	private JPanel southPanel = new JPanel();
 	private static final long serialVersionUID = 1L;
 
-	public FrameSceltaPedina(Colore turno,Scacchiera scacchiera,Position pos,PanelScacchiera ps) {
+	/**
+	 * In base alla scelta della pedina (cioe' tra Regina, Torre, Alfiere e
+	 * Cavallo), sostituisce il Pedone e modifica la scacchiera. L'utilizzo di
+	 * repaint() è usato per aggiornare l'icona della nuova pedina nella
+	 * scacchiera
+	 * 
+	 * @param turno
+	 * @param scacchiera
+	 * @param pos
+	 * @param ps
+	 */
+	public FrameSceltaPedina(Colore turno, Scacchiera scacchiera, Position pos,
+			PanelScacchiera ps) {
 		super("Promozione pedone");
 
 		alfiere.addActionListener(new ActionListener() {
@@ -85,39 +104,43 @@ public class FrameSceltaPedina extends JFrame {
 		etichetta.setFont(new Font("Thaoma", Font.BOLD, 16));
 
 		northPanel.add(etichetta);
-		
-		
+
 		setColore(turno);
-		
+
 		add(northPanel, BorderLayout.NORTH);
 		add(southPanel, BorderLayout.SOUTH);
 
-		//this.setSize(250, 220);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 	}
-	
-	public void setColore(Colore colore){
-		//remove(southPanel);
+
+	/**
+	 * In base al pedone che arriva in fondo alla scacchiera mostra le pedine
+	 * dello stesso colore che si possono scegliere
+	 * 
+	 * @param colore
+	 */
+	public void setColore(Colore colore) {
+
 		southPanel.setLayout(new GridLayout(2, 2));
-		if(colore.equals(Colore.NERO)){
+		if (colore.equals(Colore.NERO)) {
 			alfiere.setIcon(alfiere_nero);
 			cavallo.setIcon(cavallo_nero);
 			regina.setIcon(regina_nero);
 			torre.setIcon(torre_nero);
-		}else{
+		} else {
 			alfiere.setIcon(alfiere_bianco);
 			cavallo.setIcon(cavallo_bianco);
 			regina.setIcon(regina_bianco);
 			torre.setIcon(torre_bianco);
 		}
-		
+
 		southPanel.add(alfiere);
 		southPanel.add(cavallo);
 		southPanel.add(regina);
 		southPanel.add(torre);
-		
+
 		add(southPanel, BorderLayout.SOUTH);
-		revalidate();	
+		revalidate();
 	}
 }
