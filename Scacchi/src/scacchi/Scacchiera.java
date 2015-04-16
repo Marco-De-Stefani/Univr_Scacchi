@@ -16,6 +16,11 @@ public class Scacchiera {
 	private int countMangiate;
 	Controller c;
 
+	/**
+	 * Costruttore della classe Scacchiera
+	 * 
+	 * @param test: se true, la scacchiera viene creata con poch pedine, utile per tutti i test JUnit
+	 */
 	public Scacchiera(boolean test){
 		if(test){
 			scacchiera = new Pedina[8][8];
@@ -39,13 +44,19 @@ public class Scacchiera {
 	
 	public Pedina[][] getScacchiera(){return scacchiera;}
 	
+	/**
+	 * Metodo che setta la pedina p nella posizione pos della scacchiera
+	 * usato nell'evoluzione del pedone per poter sostituire al pedone la pedina scelta
+	 * 
+	 * @param pos la posizione della scacchiera
+	 * @param p la pedina da mettere nella posizione
+	 */
 	public void setScacchiera(Position pos,Pedina p){
 		scacchiera[pos.getRiga()][pos.getColonna()]=p;
 	}
 	
 	
 	/**
-	 * 
 	 * @param i la riga della scacchiera
 	 * @param j la colonna della scacchiera
 	 * @return la pedina in posizione (i,j)
@@ -55,7 +66,6 @@ public class Scacchiera {
 	}
 	
 	/**
-	 * 
 	 * @param p la posizione della pedina da muovere
 	 * @return una matrice di interi dove sono indicate le posizioni possibili;
 	 * 		per ogni poszione viene associato un valore:
@@ -71,6 +81,13 @@ public class Scacchiera {
 		else return new int[8][8];
 	}
 	
+	/**
+	 * Metodo che ritorna le mosse possibili come ArrayList, usato in scacco() e scaccoMatto() 
+	 * per evitare di complicare ulteriormente il codice e per motivi di efficenza
+	 * 
+	 * @param pos la posizione della pedina
+	 * @return ArrayList con le mosse disponibili della pedina in posizione pos
+	 */
 	public ArrayList<Position> getMovesArrayList(Position pos){
 		ArrayList<Position> mosse=new ArrayList<Position>();
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
@@ -87,8 +104,14 @@ public class Scacchiera {
 	}
 		
 	
-	//muovo=true, sennò false
-	//la position arrivo è controllata
+	/**
+	 * 
+	 * @param partenza: posizione attuale della pedina
+	 * @param arrivo: posizione di arrivo, pur avendo una posizione tra le mosse disponibili già valida, 
+	 * è stato aggiunto il controllo per coerenza 
+	 * @param ps pannello della scacchiera, per il repaint()
+	 * @return true se sono riuscito a muovere, altrimenti c'è stato un errore, ad esempio se il mio re è sotto scacco
+	 */
 	public boolean move(Position partenza,Position arrivo,PanelScacchiera ps){
 		
 		if(!canMove(partenza, arrivo)){	//se non può muovere, non fa niente
@@ -101,7 +124,6 @@ public class Scacchiera {
 		}
 		
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
-			System.out.println("TESTTTTTT");
 			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 			countMangiate++;
 		}
@@ -115,6 +137,7 @@ public class Scacchiera {
 			ps.revalidate();
 			ps.repaint();
 		}
+		
 		if(turno==Colore.NERO && scacchiera[arrivo.getRiga()][arrivo.getColonna()] instanceof Pedone && arrivo.getRiga()==7){
 			evoluzionePedone(new Position(arrivo.getRiga(),arrivo.getColonna()),ps);
 			ps.setEnabled(false);
@@ -130,8 +153,14 @@ public class Scacchiera {
 	}
 	
 	
-	//simula la mossa e verifica se provoca scacco al re del proprio colore
-	//return: se scacco -> false, altrimenti true
+	/**
+	 * Simula la mossa e verifica se provoca scacco al re del proprio colore
+	 * successivamente ripristina la situazione precedente
+	 * 
+	 * @param partenza la posizione di partenza per poter provare a muovere
+	 * @param arrivo la posizione di arrivo
+	 * @return true se posso muovere senza mettere sotto scacco il mio re
+	 */
 	public boolean canMove(Position partenza,Position arrivo){
 		boolean mangiato = false;
 		boolean canMove = true;
@@ -151,7 +180,7 @@ public class Scacchiera {
 			if(scacco()==-1)canMove = false;
 		}
 		
-		//rollback
+		//rollback, ripristino la situazione precedente alla mossa
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()] = null;
 		if(mangiato){
@@ -161,23 +190,31 @@ public class Scacchiera {
 		return canMove;
 	}
 	
+	/**
+	 * @return il turno corrente
+	 */
 	public Colore getTurno(){return turno;}
 	
+	/**
+	 * @return Pedina[], array di pedine mangiate fino ad ora
+	 */
 	public Pedina[] getPedineMangiate(){
 		return mangiate;
 	}
 	
+	/**
+	 * @param pos la posizione attuale, dove devo evolvere la pedina
+	 * @param ps il pannello della scacchiera, serve per poter fare il repaint() una volta modificata la scacchiera
+	 */
 	public void evoluzionePedone(Position pos,PanelScacchiera ps){
 			FrameSceltaPedina fsp=new FrameSceltaPedina(turno,this,pos,ps);
 			fsp.setVisible(true);
 	}
 	
 	/**
-	 * 
-	 * @param
+	 * Cerca i re nella scacchiera e controlla se, nelle mosse possibili delle pedine avversarie, è presente il re.  
 	 * @return 1 se il re bianco è sotto scacco, -1 se il re nero è sotto scacco, 0 se non è sotto scacco nessun re
 	 */
-	
 	public int scacco(){
 		//scacco bianco 1
 		//scacco nero -1
@@ -195,7 +232,6 @@ public class Scacchiera {
 			}
 		}
 
-		
 		int [][] mosPos = null;
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
@@ -219,8 +255,10 @@ public class Scacchiera {
 	
 	/**
 	 * Funzione chiamata solo in caso di scacco, prova tutte le mosse possibili del re
-	 * se ne trova una dove non è sotto scacco, significa che non è scacco matto, ma 
+	 * se ne trova una dove non è sotto scacco, significa che non è scacco matto, ma non è sufficente
+	 * bisogna anche controllare che nessun'altra pedina possa salvare il re
 	 * 
+	 * @return true se il giocatore del turno corrente è sotto scacco matto
 	 */
 	public boolean scaccoMatto(){
 		
@@ -276,12 +314,12 @@ public class Scacchiera {
 	 * @return void  
 	 * Modifica direttamente la scacchiera, e viene chiamato anche in caso si volesse ricominciare una nuova partita
 	 */
-	public void restart(){
+	public void restart() {
 		scacchiera = new Pedina[8][8];
 		mangiate = new Pedina[32];
 		countMangiate = 0;
-		turno=Colore.BIANCO;
-		//carico la squadra nera
+		turno = Colore.BIANCO;
+		// carico la squadra nera
 		scacchiera[0][0] = new Torre(Colore.NERO);
 		scacchiera[0][1] = new Cavallo(Colore.NERO);
 		scacchiera[0][2] = new Alfiere(Colore.NERO);
@@ -290,10 +328,10 @@ public class Scacchiera {
 		scacchiera[0][5] = new Alfiere(Colore.NERO);
 		scacchiera[0][6] = new Cavallo(Colore.NERO);
 		scacchiera[0][7] = new Torre(Colore.NERO);
-		for(int i = 0; i < 8; i++)
+		for (int i = 0; i < 8; i++)
 			scacchiera[1][i] = new Pedone(Colore.NERO);
-		
-		//carico la squadra bianca
+
+		// carico la squadra bianca
 		scacchiera[7][0] = new Torre(Colore.BIANCO);
 		scacchiera[7][1] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][2] = new Alfiere(Colore.BIANCO);
@@ -302,9 +340,9 @@ public class Scacchiera {
 		scacchiera[7][5] = new Alfiere(Colore.BIANCO);
 		scacchiera[7][6] = new Cavallo(Colore.BIANCO);
 		scacchiera[7][7] = new Torre(Colore.BIANCO);
-		
-		for(int i = 0; i < 8; i++)
+
+		for (int i = 0; i < 8; i++)
 			scacchiera[6][i] = new Pedone(Colore.BIANCO);
-		
+
 	}
 }
