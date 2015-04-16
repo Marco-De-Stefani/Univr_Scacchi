@@ -7,19 +7,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-import scacchi.Alfiere;
 import scacchi.Colore;
 import scacchi.Pedina;
-import scacchi.Pedone;
-import scacchi.Re;
-import scacchi.Regina;
 import scacchi.Scacchiera;
 
 public class PanelInformazioni extends JComponent {

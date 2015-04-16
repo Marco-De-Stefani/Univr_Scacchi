@@ -1,8 +1,6 @@
 package scacchi.grafica;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.JFrame;
 
 import scacchi.Scacchiera;

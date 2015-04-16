@@ -186,7 +186,6 @@ public class Scacchiera {
 		if(mangiato){
 			scacchiera[arrivo.getRiga()][arrivo.getColonna()] = p;
 		}
-		System.out.println("canMove: " + canMove);
 		return canMove;
 	}
 	
@@ -273,7 +272,6 @@ public class Scacchiera {
 		
 		ArrayList<Position> mosseRe= getMovesArrayList(re);
 		for(Position p:mosseRe){
-			System.out.println(p.getRiga()+" "+p.getColonna());
 			if(canMove(re,p))return false;
 		}
 			//il re non ha mosse possibili

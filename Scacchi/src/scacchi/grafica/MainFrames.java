@@ -3,14 +3,10 @@ package scacchi.grafica;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
-import javax.swing.Box;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import scacchi.Scacchiera;
 
 
 public class MainFrames {
