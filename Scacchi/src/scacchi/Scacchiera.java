@@ -1,8 +1,6 @@
 package scacchi;
 
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
-
 import javax.swing.JOptionPane;
 
 import scacchi.grafica.Controller;
@@ -18,9 +16,6 @@ public class Scacchiera {
 	private int countMangiate;
 	Controller c;
 
-	
-	
-	
 	public Scacchiera(boolean test){
 		if(test){
 			scacchiera = new Pedina[8][8];
@@ -37,19 +32,6 @@ public class Scacchiera {
 			scacchiera[5][6] = new Alfiere(Colore.BIANCO);
 			scacchiera[6][0] = new Pedone(Colore.NERO);
 			scacchiera[7][3] = new Re(Colore.BIANCO);
-			/*
-			scacchiera[0][3] = new Re(Colore.NERO);
-			scacchiera[2][1] = new Pedone(Colore.NERO);
-			scacchiera[3][0] = new Pedone(Colore.BIANCO);
-			scacchiera[4][3] = new Regina(Colore.NERO);
-			scacchiera[4][7] = new Torre(Colore.NERO);
-			scacchiera[5][0] = new Cavallo(Colore.BIANCO);
-			scacchiera[5][6] = new Alfiere(Colore.BIANCO);
-			scacchiera[7][0] = new Regina(Colore.NERO);
-			scacchiera[5][1] = new Re(Colore.BIANCO);
-			System.out.println(scacco());
-			System.out.println("sm"+scaccoMatto());
-			*/
 		}else{
 			restart();
 		}
@@ -235,14 +217,17 @@ public class Scacchiera {
 		return 0;
 	}
 	
-
+	/**
+	 * Funzione chiamata solo in caso di scacco, prova tutte le mosse possibili del re
+	 * se ne trova una dove non è sotto scacco, significa che non è scacco matto, ma 
+	 * 
+	 */
 	public boolean scaccoMatto(){
-		//funzione chiamata solo in caso di scacco!
+		
 		Position re = null;
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
 				if(scacchiera[i][j] != null && scacchiera[i][j] instanceof Re && scacchiera[i][j].getColore() == turno){
-					System.out.println("Re"+i+" "+j+" "+turno);
 					re=new Position(i,j);
 				}
 			}
@@ -253,7 +238,6 @@ public class Scacchiera {
 			System.out.println(p.getRiga()+" "+p.getColonna());
 			if(canMove(re,p))return false;
 		}
-		
 			//il re non ha mosse possibili
 			if(!salvataggioRe())
 				return true;
@@ -261,7 +245,10 @@ public class Scacchiera {
 				return false;
 		}
 
-	//metodo che restituisce true solo se, con una mossa posso fare in modo che il re non sia più sotto scacco
+	/**
+	 * Metodo per controllare che nessuna pedina possa salvare il re
+	 * @return true solo se con una mossa posso fare in modo che il re non sia più sotto scacco
+	 */
 	public boolean salvataggioRe(){
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++){
@@ -271,7 +258,7 @@ public class Scacchiera {
 					for(Position p:r){
 						if(turno==Colore.BIANCO){
 							if(canMove(new Position(i, j), p) && scacco()!=1)
-							//se true, esiste una mossa che mi salva dallo scacco
+								//se true, esiste una mossa che mi salva dallo scacco
 								return true;
 						}else{
 							if(canMove(new Position(i, j), p) && scacco()!=-1)
@@ -284,7 +271,11 @@ public class Scacchiera {
 		return false;
 	}
 	
-	
+	/**
+	 * Metodo per inizializzare la scacchiera
+	 * @return void  
+	 * Modifica direttamente la scacchiera, e viene chiamato anche in caso si volesse ricominciare una nuova partita
+	 */
 	public void restart(){
 		scacchiera = new Pedina[8][8];
 		mangiate = new Pedina[32];

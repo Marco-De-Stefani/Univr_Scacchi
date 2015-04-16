@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Cavallo extends Pedina {
 
+	/**
+	 * Costruttore del Cavallo
+	 */
 	public Cavallo(Colore colore) {
 		super(Nome.CAVALLO, colore);
 	}
@@ -14,7 +17,6 @@ public class Cavallo extends Pedina {
 	 * controlla in base alla posizione in cui si trova guarda che le mosse 	 
 	 * rimagano dentro la scacchiera 
 	 */
-	//modificare positions, da AL a array di 8 el.
 	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera){
 		
 		ArrayList<Position> positions = new ArrayList<Position>();
@@ -33,7 +35,7 @@ public class Cavallo extends Pedina {
 		// scorro l'array e cerco x o y che siano <0 || >8
 		boolean controllo;
 		do{
-				controllo=false;
+			controllo=false;
 			for (int i=0;i<positions.size();i++) {
 				Position pos=positions.get(i);
 				if (pos.getRiga() < 0 || pos.getColonna() < 0 || pos.getRiga() >= nRighe || pos.getColonna() >= nColonne) {
