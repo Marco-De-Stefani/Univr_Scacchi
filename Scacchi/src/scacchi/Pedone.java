@@ -1,15 +1,24 @@
 package scacchi;
 
 public class Pedone extends Pedina {
-
+	/**
+	 * 
+	 * Costruttore della classe Pedone
+	 * 
+	 * @param colore
+	 */
 	public Pedone(Colore colore) {
 		super(Nome.PEDONE, colore);
 	}
+
 	/**
-	 * ritorna le mosse possibili del Pedone per la prossima mossa
-	 * controllando che si possa muovere solo in avanti e possa mangiare solo in diagonale
-	 * controlla, in base alla posizione in cui si trova, che le mosse 	 
-	 * rimagano dentro la scacchiera 
+	 * 
+	 * @param posPedina
+	 * @param scacchiera
+	 * @return le mosse possibili del Pedone per la prossima mossa controllando
+	 *         che si possa muovere solo in avanti e possa mangiare solo in
+	 *         diagonale. Inoltre controlla, in base alla posizione in cui si
+	 *         trova, che le mosse rimagano dentro la scacchiera
 	 */
 	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera) {
 		int[][] mosse = new int[8][8];
