@@ -5,14 +5,19 @@ import java.util.ArrayList;
 public class Cavallo extends Pedina {
 
 	/**
-	 * Costruttore del Cavallo
+	 * 
+	 * Costruttore della classe Cavallo
+	 * @param colore
 	 */
 	public Cavallo(Colore colore) {
 		super(Nome.CAVALLO, colore);
 	}
 
 	/**
-	 * ritorna le mosse possibili del Cavallo per la prossima mossa
+	 * 
+	 * @param posPedina
+	 * @param scacchiera
+	 * @return le mosse possibili del Cavallo per la prossima mossa
 	 * ricordando che si muove solo a L
 	 * controlla in base alla posizione in cui si trova guarda che le mosse 	 
 	 * rimagano dentro la scacchiera 

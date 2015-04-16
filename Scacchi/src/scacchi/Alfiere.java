@@ -2,20 +2,27 @@ package scacchi;
 
 
 public class Alfiere extends Pedina {
-
+	/**
+	 * 
+	 * Costruttore della classe Alfiere
+	 * @param colore
+	 */
 	public Alfiere(Colore colore){
 		super(Nome.ALFIERE, colore);
 	}
 	/**
-	 * ritorna le mosse possibili dell' alfiere per la prossima mossa
+	 * 
+	 * @param posPedina
+	 * @param scacchiera
+	 * @return le mosse possibili dell' alfiere per la prossima mossa
 	 * ricordando che si muove solo in diagonale
 	 * controlla, in base alla posizione in cui si trova, che le mosse 	 
 	 * rimagano dentro la scacchiera
 	 */
 	public int[][] mossePossibili(Position posPedina, Pedina[][] scacchiera){
 		int[][] mosse = new int[8][8];
-		int r;	//riga
-		int c;	//colonna
+		int r;
+		int c;
 		
 		//obliquo dx su
 		r = posPedina.getRiga() - 1;

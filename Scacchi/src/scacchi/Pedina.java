@@ -9,7 +9,12 @@ public abstract class Pedina {
 	
 	protected static int nRighe = 8;
 	protected static int nColonne = 8;
-	
+	/**
+	 * 
+	 * Costruttore della classe Pedina 
+	 * @param nome
+	 * @param colore
+	 */
 	public Pedina(Nome nome, Colore colore){
 		this.nome = nome;
 		this.colore = colore;
@@ -17,14 +22,14 @@ public abstract class Pedina {
 	
 	/**
 	 * 
-	 * @return nome il nome della pedina
+	 * @return nome, il nome della pedina
 	 */
 	public Nome getNome(){
 		return this.nome;
 	}
 	/**
 	 * 
-	 * @return colore il colore della pedina
+	 * @return colore, il colore della pedina
 	 */
 	public Colore getColore(){
 		return this.colore;
