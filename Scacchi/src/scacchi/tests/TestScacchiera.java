@@ -97,12 +97,10 @@ public class TestScacchiera {
 	public void testScaccoMatto() {
 		Scacchiera scacchiera = new Scacchiera(true);
 		
-		scacchiera.move(new Position(7,3), new Position(7,2), null);
-		scacchiera.move(new Position(6,0), new Position(7,0), null);
-		scacchiera.move(new Position(7,2), new Position(6,2), null);
+		scacchiera.move(new Position(7,3), new Position(6,2), null);
 		scacchiera.move(new Position(4,7), new Position(6,7), null);
 		scacchiera.move(new Position(6,2), new Position(5,1), null);
-		scacchiera.move(new Position(7,0), new Position(6,1), null);
+		scacchiera.move(new Position(6,7), new Position(6,1), null);
 		Assert.assertTrue(scacchiera.scaccoMatto());
 	}
 	
