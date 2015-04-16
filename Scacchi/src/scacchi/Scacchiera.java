@@ -27,6 +27,7 @@ public class Scacchiera {
 			mangiate = new Pedina[32];
 			countMangiate = 0;
 			turno=Colore.BIANCO;
+			
 			scacchiera[0][3] = new Re(Colore.NERO);
 			scacchiera[2][1] = new Pedone(Colore.NERO);
 			scacchiera[3][0] = new Pedone(Colore.BIANCO);
@@ -36,6 +37,19 @@ public class Scacchiera {
 			scacchiera[5][6] = new Alfiere(Colore.BIANCO);
 			scacchiera[6][0] = new Pedone(Colore.NERO);
 			scacchiera[7][3] = new Re(Colore.BIANCO);
+			/*
+			scacchiera[0][3] = new Re(Colore.NERO);
+			scacchiera[2][1] = new Pedone(Colore.NERO);
+			scacchiera[3][0] = new Pedone(Colore.BIANCO);
+			scacchiera[4][3] = new Regina(Colore.NERO);
+			scacchiera[4][7] = new Torre(Colore.NERO);
+			scacchiera[5][0] = new Cavallo(Colore.BIANCO);
+			scacchiera[5][6] = new Alfiere(Colore.BIANCO);
+			scacchiera[7][0] = new Regina(Colore.NERO);
+			scacchiera[5][1] = new Re(Colore.BIANCO);
+			System.out.println(scacco());
+			System.out.println("sm"+scaccoMatto());
+			*/
 		}else{
 			restart();
 		}
@@ -45,7 +59,6 @@ public class Scacchiera {
 	
 	public void setScacchiera(Position pos,Pedina p){
 		scacchiera[pos.getRiga()][pos.getColonna()]=p;
-		
 	}
 	
 	
@@ -81,15 +94,18 @@ public class Scacchiera {
 		if(scacchiera[pos.getRiga()][pos.getColonna()].getColore().equals(turno)){
 			int[][] moves= scacchiera[pos.getRiga()][pos.getColonna()].mossePossibili(pos, scacchiera);
 			for(int i=0;i<moves.length;i++)
-				for(int j=0;j<moves.length;j++){
-					if(moves[i][j]!=0)mosse.add(new Position(i, j));
+				for(int j=0;j<moves[0].length;j++){
+					if(moves[i][j]!=0){
+						mosse.add(new Position(i, j));
+					}
 				}
 		}
+		
 		return mosse;
 	}
 		
 	
-	//mangio=true, sennò false
+	//muovo=true, sennò false
 	//la position arrivo è controllata
 	public boolean move(Position partenza,Position arrivo,PanelScacchiera ps){
 		
@@ -103,6 +119,7 @@ public class Scacchiera {
 		}
 		
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
+			System.out.println("TESTTTTTT");
 			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 			countMangiate++;
 		}
@@ -136,30 +153,27 @@ public class Scacchiera {
 	public boolean canMove(Position partenza,Position arrivo){
 		boolean mangiato = false;
 		boolean canMove = true;
-		
+		Pedina p = null;
 		if(scacchiera[arrivo.getRiga()][arrivo.getColonna()] != null){
 			mangiato = true;
-			mangiate[countMangiate] = scacchiera[arrivo.getRiga()][arrivo.getColonna()];
-			countMangiate++;
+			p=scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 		}
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()]=scacchiera[partenza.getRiga()][partenza.getColonna()];
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=null;
 		
 		//controllo se la mossa provoca lo scacco del re con lo stesso colore
 
-		
-		if(scacco() == 1 &&
-				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.BIANCO)
-				|| scacco() == -1 &&
-				scacchiera[arrivo.getRiga()][arrivo.getColonna()].getColore().equals(Colore.NERO))
-			canMove = false;
+		if(turno==Colore.BIANCO){
+			if(scacco()==1)canMove = false;
+		}else{
+			if(scacco()==-1)canMove = false;
+		}
 		
 		//rollback
 		scacchiera[partenza.getRiga()][partenza.getColonna()]=scacchiera[arrivo.getRiga()][arrivo.getColonna()];
 		scacchiera[arrivo.getRiga()][arrivo.getColonna()] = null;
 		if(mangiato){
-			countMangiate--;
-			scacchiera[arrivo.getRiga()][arrivo.getColonna()] = mangiate[countMangiate];
+			scacchiera[arrivo.getRiga()][arrivo.getColonna()] = p;
 		}
 		System.out.println("canMove: " + canMove);
 		return canMove;
@@ -227,7 +241,8 @@ public class Scacchiera {
 		Position re = null;
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
-				if(scacchiera[i][j] != null && scacchiera[i][j].getNome() == Nome.RE && scacchiera[i][j].getColore() == turno){
+				if(scacchiera[i][j] != null && scacchiera[i][j] instanceof Re && scacchiera[i][j].getColore() == turno){
+					System.out.println("Re"+i+" "+j+" "+turno);
 					re=new Position(i,j);
 				}
 			}
@@ -235,6 +250,7 @@ public class Scacchiera {
 		
 		ArrayList<Position> mosseRe= getMovesArrayList(re);
 		for(Position p:mosseRe){
+			System.out.println(p.getRiga()+" "+p.getColonna());
 			if(canMove(re,p))return false;
 		}
 		
@@ -247,16 +263,21 @@ public class Scacchiera {
 
 	//metodo che restituisce true solo se, con una mossa posso fare in modo che il re non sia più sotto scacco
 	public boolean salvataggioRe(){
-		
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++){
 				if(scacchiera[i][j]!=null && scacchiera[i][j].getColore().equals(turno)){
 					//per ogni mia pedina, se posso salvare il re
 					ArrayList<Position> r=getMovesArrayList(new Position(i, j));
 					for(Position p:r){
-						if(canMove(new Position(i, j), p))
+						if(turno==Colore.BIANCO){
+							if(canMove(new Position(i, j), p) && scacco()!=1)
 							//se true, esiste una mossa che mi salva dallo scacco
-							return true;
+								return true;
+						}else{
+							if(canMove(new Position(i, j), p) && scacco()!=-1)
+								//se true, esiste una mossa che mi salva dallo scacco
+								return true;
+						}
 					}
 				}
 			}
