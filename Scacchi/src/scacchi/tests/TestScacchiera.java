@@ -1,7 +1,5 @@
 package scacchi.tests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,6 +14,7 @@ import scacchi.Scacchiera;
  * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
  *
  */
+
 public class TestScacchiera {
 
 	@Test

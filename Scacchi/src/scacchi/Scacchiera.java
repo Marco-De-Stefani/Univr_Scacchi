@@ -15,7 +15,7 @@ public class Scacchiera {
 	private Colore turno=Colore.BIANCO;
 	private int countMangiate;
 	Controller c;
-
+ 
 	/**
 	 * Costruttore della classe Scacchiera
 	 * 

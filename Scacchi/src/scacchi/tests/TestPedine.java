@@ -18,6 +18,7 @@ import scacchi.Torre;
  * @author Tommaso Dal Fior, Marco De Stefani, Davide Miglioranzi
  *
  */
+
 public class TestPedine {
 	
 	Scacchiera s=new Scacchiera(true);
@@ -90,7 +91,5 @@ public class TestPedine {
 		}
 		Assert.assertFalse(mosse[4][7]==1);
 	}
-	
-	
 	
 }
