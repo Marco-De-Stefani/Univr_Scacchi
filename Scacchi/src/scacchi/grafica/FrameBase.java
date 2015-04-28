@@ -21,7 +21,7 @@ public class FrameBase extends JFrame {
 	 * @param nome2 nome del giocatore 2
 	 */
 	public FrameBase(String nome1, String nome2) {
-		Scacchiera scacchiera = new Scacchiera(true);
+		Scacchiera scacchiera = new Scacchiera(false);
 		PanelScacchiera ps = new PanelScacchiera(scacchiera);
 		PanelInformazioni pi = new PanelInformazioni(scacchiera, nome1, nome2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
